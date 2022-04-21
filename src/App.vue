@@ -34,7 +34,6 @@
         </li>
         <form class="d-flex">
         <input class="form-control me-2" type="search" v-model="searchs" @keyup="serch()" @keydown="serch()" @change="serch()"  placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
         <li class="form-check form-switch">
         <input class="form-check-input" :checked="lampu().lampu" @change="lampu().Darkmode()" type="checkbox" id="flexSwitchCheckDefault">
@@ -83,11 +82,7 @@ export default {
 </script>
 
  <style>
- .form-check.form-switch {
-   position:absolute;
-   top : 0;
-   right : 0;
- }  
+ 
  .dark {
     --backcolor : #1a1a1d;
     --textcolor : aliceblue;

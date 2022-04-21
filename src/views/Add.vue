@@ -166,9 +166,6 @@ import { isEmpty } from "../myFunction";
       <div>Semua Form Harus Diisi</div>
     </div>
     <div v-if="!alert_hide" class="back">
-      <RouterLink class="back2" to="/"
-        ><button class="btn btn-dark">Kembali</button></RouterLink
-      >
       <button @click="submit" class="btn btn-dark">Submit</button>
     </div>
   </form>
