@@ -44,6 +44,7 @@ export default {
       //         console.log(err)
       //     })
       this.film = dataFilm().dapatDataFilm(search().getGenre, search().getsearch);
+      console.log(search().getsearch)
     }, 500  )
     
   },
