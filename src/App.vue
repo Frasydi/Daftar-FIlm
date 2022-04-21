@@ -50,11 +50,10 @@
 <script>
 export default {
   created() {
-    this.cari = search().getsearch
   },
   data() {
     return {
-      cari : ""
+      
     }
   },
   methods : {
