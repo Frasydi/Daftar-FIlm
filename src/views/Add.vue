@@ -6,7 +6,7 @@ import { dataFilm } from "../store/dataFilm";
 
 <template>
   <h1>Menambahkan Data Film</h1>
-  <form>
+  <form class="container">
     <label class="tips"
       >Untuk Pameran, Sutradara, dan Penulis, harap dipisahkan dengan tanda koma(,)</label
     >
