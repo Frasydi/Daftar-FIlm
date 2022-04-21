@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { isEmpty } from "../myFunction"
+
 export const search = defineStore('search', {
   state : () => ({
     genre : "all",
