@@ -9,7 +9,7 @@ import { RouterLink } from "vue-router";
  
   <div class="utama2">
     <h1>Data-data Film</h1>
-    <h4 style="margin-left:5%">Genre : {{search().getGenre}} </h4>
+    <h4>Genre : {{search().getGenre}} </h4>
     <div class="container">
       <div v-for="(fil, ind) in film" :key="ind" class="cardFilm">
           <img @click="mengaktifkanmodal(fil)" :src="fil.Gambar" :alt="fil.Gambar" class="datafil" />
@@ -128,7 +128,9 @@ h1 {
   text-align: center;
   
 }
-
+h4 {
+  margin-left:5%;
+}
 .modal {
   z-index: 98;
   background-color: black;

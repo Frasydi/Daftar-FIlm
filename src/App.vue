@@ -107,7 +107,7 @@ export default {
 transition: 1s color;
   transition: 1s background;
 }
-h1,.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link,.navbar-light .navbar-brand {
+h1,.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link,.navbar-light .navbar-brand,h4 {
   color : var(--textcolor)
 }
 
