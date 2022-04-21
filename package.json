@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "postinstall": "npm run build",
-    "start": "node server.js",  
+    "start": "node server.js",
     "serve": "vue-cli-service serve",
     "dev": "vite",
     "build": "vite build",
