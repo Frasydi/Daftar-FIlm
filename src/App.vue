@@ -95,14 +95,16 @@ export default {
     --textcolor : #1a1a1d;
     --inputcolor : rgb(255, 252, 246);
   --shadow : rgba(0, 0, 0, 0.3);
-      --navicon : url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  --navicon : url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     --notactivecolor : rgba(0,0,0,0.6);
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: var(--notactivecolor);
+    color: var(--notactivecolor) ;
 }
-
+button.navbar-toggler > span.navbar-toggler-icon {
+   background-image: var(--navicon) !important; 
+}
 * {
 transition: 1s color;
   transition: 1s background;
