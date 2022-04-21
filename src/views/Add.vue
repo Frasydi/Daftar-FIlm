@@ -6,7 +6,9 @@ import { dataFilm } from "../store/dataFilm";
 
 <template>
   <h1>Menambahkan Data Film</h1>
-  <form class="container">
+  <div class="container">
+
+  <form>
     <label class="tips"
       >Untuk Pameran, Sutradara, dan Penulis, harap dipisahkan dengan tanda koma(,)</label
     >
@@ -178,6 +180,7 @@ import { dataFilm } from "../store/dataFilm";
       <button @click="submit" class="btn btn-dark">Submit</button>
     </div>
   </form>
+  </div>
 </template>
 
 <script>
