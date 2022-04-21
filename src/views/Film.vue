@@ -8,12 +8,14 @@ import { RouterLink } from "vue-router";
 <template>
  
   <div class="utama2">
+    <div class="container">
     <h1>Data-data Film</h1>
     <h4>Genre : {{search().getGenre}} </h4>
     <div class="container">
       <div v-for="(fil, ind) in film" :key="ind" class="cardFilm">
           <img @click="mengaktifkanmodal(fil)" :src="fil.Gambar" :alt="fil.Gambar" class="datafil" />
       </div>
+    </div>
     </div>
   </div>
 
