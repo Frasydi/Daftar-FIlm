@@ -1,7 +1,7 @@
 <script setup>
 import { RouterLink } from "vue-router";
 import { dataFilm } from "../store/dataFilm";
-import { isEmpty } from "../myFunction";
+
 </script>
 
 <template>
@@ -12,18 +12,18 @@ import { isEmpty } from "../myFunction";
     >
 
     <div class="form-floating mb-3">
-      <input
+      <input  ref="Judul"
         type="text"
         class="form-control"
         id="floatingInput"
-        v-model="judul"
+       
         placeholder="Judul"
         required
       />
       <label for="floatingInput">Judul</label>
     </div>
     <div class="form-floating mb-3">
-      <select class="form-select" aria-label="Default select example" v-model="Genre">
+      <select  ref="Genre" class="form-select" aria-label="Default select example" >
         <option value="Action" selected>Action</option>
         <option value="Comedy">Comedy</option>
         <option value="Romance">Romance</option>
@@ -32,77 +32,85 @@ import { isEmpty } from "../myFunction";
     </div>
     <div class="form-floating mb-3">
       <input
+       ref="Tanggal_liris"
         type="date"
         class="form-control"
         id="floatingPassword"
         placeholder="Tanggal Liris"
-        v-model="tanggalliris"
+      
         required
       />
       <label for="floatingPassword">Tanggal Liris</label>
     </div>
     <div class="form-floating mb-3">
       <input
+         ref="Pameran"
+
         type="text"
         class="form-control"
         id="floatingPassword"
         placeholder="Pameran"
-        v-model="pameran"
+       
         required
       />
       <label for="floatingPassword">Pameran</label>
     </div>
     <div class="form-floating mb-3">
       <input
+       ref="Durasi"
         type="number"
         class="form-control"
         id="floatingPassword"
         placeholder="Durasi"
-        v-model="durasi"
+       
         required
       />
       <label for="floatingPassword">Durasi</label>
     </div>
     <div class="form-floating mb-3">
       <input
+       ref="Sutradara"
         type="text"
         class="form-control"
         id="floatingPassword"
         placeholder="Sutradara"
-        v-model="sutradara"
+       
         required
       />
       <label for="floatingPassword">Sutradara</label>
     </div>
     <div class="form-floating mb-3">
       <input
+       ref="Anggaran"
+
         type="number"
         class="form-control"
         id="floatingPassword"
         placeholder="Anggaran"
-        v-model="anggaran"
+        
         required
       />
       <label for="floatingPassword">Anggaran</label>
     </div>
     <div class="form-floating mb-3">
-      <input
+      <input ref="Penulis"
         type="text"
         class="form-control"
         id="floatingPassword"
         placeholder="Penulis"
-        v-model="penulis"
+       
         required
       />
       <label for="floatingPassword">Penulis</label>
     </div>
     <div class="form-floating mb-3">
       <textarea
+       ref="Sinopsis"
         type="text"
         class="form-control"
         id="floatingPassword"
         placeholder="Sinopsis"
-        v-model="sinopsis"
+        
         required
       />
       <label for="floatingPassword">Sinopsis</label>
@@ -110,11 +118,12 @@ import { isEmpty } from "../myFunction";
     <div class="form-group mb-5">
       <div class="form-floating mb-3">
         <input
+         ref="Gambar"
           type="url"
           class="form-control"
           id="floatingPassword"
           placeholder="URL"
-          v-model="gambar"
+         
           required
         />
         <label for="floatingPassword">URL dari Gambar</label>
@@ -177,35 +186,38 @@ export default {
     return {
       salah: false,
       alert_hide: false,
-      gam: "File",
-      judul: "",
-      Genre : "Action",
-      tanggalliris: "",
-      pameran: "",
-      durasi: 0,
-      sutradara: "",
-      anggaran: 0,
-      penulis: "",
-      sinopsis: "",
-      gambar: "",
+     
     };
   },
   methods: {
+    isEmpty(str) {
+    return (!str || str.length === 0)
+},
     cek() {
       console.log(this.Genre)
     },
     submit(e) {
       e.preventDefault();
+      let Judul = this.$refs.Judul.value
+      let Genre = this.$refs.Genre.value
+      let Anggaran = this.$refs.Anggaran.value
+      let Sinopsis = this.$refs.Sinopsis.value
+      let Penulis = this.$refs.Penulis.value
+      let Gambar = this.$refs.Gambar.value
+      let Tanggal_liris = this.$refs.Tanggal_liris.value
+      let Durasi = this.$refs.Durasi.value
+      let Pameran = this.$refs.Pameran.value
+      let Sutradara = this.$refs.Sutradara.value
       if (
-        this.isEmpty(this.judul) ||
-        this.isEmpty(this.tanggalliris) ||
-        this.isEmpty(this.pameran) ||
-        this.isEmpty(this.durasi) ||
-        this.isEmpty(this.sutradara) ||
-        this.isEmpty(this.anggaran) ||
-        this.isEmpty(this.penulis) ||
-        this.isEmpty(this.sinopsis) ||
-        this.isEmpty(this.gambar)
+        this.isEmpty(Judul) ||
+        this.isEmpty(Tanggal_liris) ||
+        this.isEmpty(Pameran) ||
+        this.isEmpty(Durasi) ||
+        this.isEmpty(Sutradara) ||
+        this.isEmpty(Anggaran) ||
+        this.isEmpty(Penulis) ||
+        this.isEmpty(Sinopsis) ||
+        this.isEmpty(Gambar)
       ) {
         this.salah = true;
         return;
@@ -214,22 +226,22 @@ export default {
       this.alert_hide = true;
       let tanggal = new Date();
       tanggal =
-        tanggal.getDate() + "-" + tanggal.getMonth() + "-" + tanggal.getFullYear();
+      tanggal.getDate() + "-" + tanggal.getMonth() + "-" + tanggal.getFullYear();
       tanggal = tanggal;
-      let pameran = this.pameran.split(",");
-      let sutradara = this.sutradara.split(",");
-      let penulis = this.penulis.split(",");
+      Pameran = Pameran.split(",");
+      Sutradara = Sutradara.split(",");
+      Penulis = Penulis.split(",");
       let hasil = {
-        Judul: this.judul,
-        Genre : this.Genre,
-        Tanggal_liris: tanggal,
-        pameran: pameran,
-        Durasi: this.durasi,
-        Sutradara: sutradara,
-        Anggaran: this.anggaran,
-        Penulis: penulis,
-        Sinopsis: this.sinopsis,
-        Gambar: this.gambar,
+        Judul: Judul,
+        Genre : Genre,
+        Tanggal_liris: Tanggal_liris,
+        pameran: Pameran,
+        Durasi: Durasi,
+        Sutradara: Sutradara,
+        Anggaran: Anggaran,
+        Penulis: Penulis,
+        Sinopsis: Sinopsis,
+        Gambar: Gambar,
       };
       dataFilm().menambahkanFilm(hasil);
      

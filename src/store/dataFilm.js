@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { isEmpty } from "../myFunction"
+
 export const search = defineStore('search', {
   state : () => ({
     genre : "all",
@@ -144,6 +144,30 @@ export const dataFilm = defineStore('Film', {
               ],
               "Sinopsis": "Berawal dari kisah pencarian harta karun seorang Brock Lovett dan timnya. Dengan objek kapal RMS Titanic yang dipercaya menyimpan Heart Of The Oceans, sebuah kalung berlian yang terkubur di dalam bangkai kapal raksasa tersebut. Namun, nyatanya semua usaha mereka mengulik kapal yang telah tenggelam bertahun-tahun itu tak membuahkan hasil. Mereka hanya menemui sebuah peti yang terdapat lukisan seorang wanita memakai kalung berlian yang dicari. Siapakah wanita itu? ",
               "Gambar": "https://upload.wikimedia.org/wikipedia/id/1/19/Titanic_%28Official_Film_Poster%29.png"
+            }, {
+              
+              "Judul": "Hotel Transylvania: Transformania ",
+              "Genre" : "Comedy",
+              "Tanggal_liris": "12-01-2022",
+              "pameran": [
+                	
+                "Andy Samberg",
+                "Selena Gomez",
+                "Kathryn Hahn"
+              ],
+              "Durasi": 148,
+              "Sutradara": [
+                	"Derek Drymon","Jennifer Kluska"
+              ],
+              "Anggaran": 8.3 ,
+              "Penulis": [
+                "Genndy Tartakovsky"
+              ],
+              "Sinopsis": 
+              `Ketika penemuan misterius Van Helsing, "Monsterfication Ray", menjadi kacau, Drac dan teman-teman monsternya semuanya berubah menjadi manusia, dan Johnny menjadi monster! Dalam tubuh baru mereka yang tidak serasi, Drac, kehilangan kekuatannya, dan Johnny yang bersemangat, mencintai kehidupannya sebagai monster. Mereka harus bekerja sama dan berlomba melintasi dunia untuk menemukan obat sebelum terlambat, dan sebelum mereka saling membuat gila.
+
+              `,
+              "Gambar": "https://upload.wikimedia.org/wikipedia/en/8/8b/Hotel_Transylvania_Transformania.jpg"
             }
           ]
     }),
@@ -153,7 +177,7 @@ export const dataFilm = defineStore('Film', {
         },
         dapatDataFilm(Genres, Search) {
           let a = Genres === "all" ? this.film : this.film.filter( fil =>  fil.Genre == Genres )
-          if(isEmpty(Search)) {
+          if((!Search||Search.length == 0)) {
             return a
           }
           let regex = new RegExp(Search.trim(),'i');
