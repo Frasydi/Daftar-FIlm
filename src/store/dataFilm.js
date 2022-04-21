@@ -177,7 +177,7 @@ export const dataFilm = defineStore('Film', {
         },
         dapatDataFilm(Genres, Search) {
           let a = Genres === "all" ? this.film : this.film.filter( fil =>  fil.Genre == Genres )
-          if(isEmpty(Search)) {
+          if((!Search||Search.length == 0)) {
             return a
           }
           let regex = new RegExp(Search.trim(),'i');
