@@ -98,7 +98,13 @@ export default {
   --navicon : url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%280, 0, 0, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     --notactivecolor : rgba(0,0,0,0.6);
 }
-
+.dropdown-menu.show{
+  animation : sizein 0.2s forwards
+}
+@keyframes sizein {
+  from { transform: scale(-10%);  }
+  to { transform: scale(100%); }
+}
 .navbar-light .navbar-nav .nav-link {
     color: var(--notactivecolor) ;
 }

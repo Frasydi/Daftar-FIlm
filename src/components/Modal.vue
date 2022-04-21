@@ -7,9 +7,9 @@
 <span>Judul</span>&emsp;&emsp;&emsp;&emsp;: &nbsp;{{datafilm.Judul}}<br>
 <span>Genre</span>&emsp;&emsp;&emsp;&emsp;: &nbsp;{{datafilm.Genre}}<br>
 <span>Tanggal Liris </span>&nbsp;: &nbsp; {{datafilm.Tanggal_liris}}  <br>
-<span>Pameran </span>&emsp;&emsp;: &nbsp;{{datafilm.pameran.join(", ")}}<br>
+<span>Pameran </span>&emsp;&emsp;: &nbsp;{{ !datafilm.pameran ? "" : datafilm.pameran.join(", ")}}<br>
 <span>durasi </span>&emsp;&emsp;&emsp; :  &nbsp; {{datafilm.durasi}} menit<br>
-<span>Sutradara </span>&emsp;&nbsp; :  &nbsp; {{datafilm.Sutradara.join(", ")}}  <br>
+<span>Sutradara </span>&emsp;&nbsp; :  &nbsp; {{!datafilm.Sutradara ? "" : datafilm.Sutradara.join(", ")}}  <br>
 <span>Anggaran </span>&emsp;&nbsp; :  &nbsp; ${{datafilm.Anggaran}} juta  <br>
 <span>Penulis </span>&emsp;&emsp;&nbsp; :  &nbsp; {{datafilm.Penulis.join(", ")}}  <br>
 <span>Sinopsis </span> : <p class="sinopsis" v-html="datafilm.Sinopsis"> </p> <br>
@@ -106,7 +106,6 @@ span {
     width:90%;
     top : 50%;
     left : 50%;
-    transform: translate(-50%,-50%);
     background-color: var(--backcolor);
     
 }

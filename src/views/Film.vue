@@ -19,7 +19,7 @@ import { RouterLink } from "vue-router";
     </div>
   </div>
 
-  <Modal @modaloffs="modaloff" v-if="modal" />
+  <Modal @modaloffs="modaloff" class="modal" :class="modalname" />
   
 </template>
 
@@ -57,6 +57,7 @@ export default {
   },
   data() {
     return {
+      modalname : "hidess",
       film : {},
       film1: {
         
@@ -80,7 +81,8 @@ export default {
       console.log(this.film);
     },
     modaloff() {
-      this.modal = false;
+      
+      this.modalname = "hidess"
     },
     mengaktifkanmodal(val) {
       this.modal = true;
@@ -94,6 +96,8 @@ export default {
       this.film1.Penulis = val.Penulis;
       this.film1.Sinopsis = val.Sinopsis;
       this.film1.Gambar = val.Gambar;
+      this.modalname = "show"
+      console.log(this.$refs.modalref.classList)
       console.log(this.film1);
     },
   },
@@ -136,8 +140,28 @@ h4 {
 .modal {
   z-index: 98;
   background-color: black;
+  
 }
 
+.modal.hidess {
+  animation:  fadeout 3s forwards;
+}
+.modal.show {
+  display: block;
+  
+}
+div.utama.modal.show>div.card {
+  animation: fadein 1s  forwards;
+}
+@keyframes fadein {
+  from {
+    transform: translate(-50%, 200%);}
+  to {
+    transform: translate(-50%,-50%);}
+}
+  @keyframes fadeout {
+    to {transform: translate(-50%, 200%);}
+  }
 
 div.form-check.form-switch {
   position : absolute;
