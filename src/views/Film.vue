@@ -22,32 +22,30 @@ import { RouterLink } from "vue-router";
 </template>
 
 <script>
-import { dataFilm, lampu } from "../store/dataFilm";
+import { dataFilm } from "../store/dataFilm";
 import { computed } from '@vue/runtime-core';
 import { search } from "../store/dataFilm";
 
 export default {
   created() {
-    /*fetch("http://localhost:4000", {
-              method : "GET",
-              headers : {
-                  accept : "application/json"
-              },
-              mode: "cors"
-          })
-          .then(res =>  res.json())
-          .then(data => {
-              this.film = data
-              console.log(data)
-          }
-          ).catch(err => {
-              console.log(err)
-          })
-          */
-    setInterval( () => {
+     setInterval(()=> {
+      //  fetch("http://localhost:4000?Genre="+search().getGenre+"&Search="+search().getsearch, {
+      //         method : "GET",
+      //         headers : {
+      //             accept : "application/json"
+      //         },
+      //         mode: "cors"
+      //     })
+      //     .then(res =>  res.json())
+      //     .then(data => {
+      //         this.film =  data
+      //     }
+      //     ).catch(err => {
+      //         console.log(err)
+      //     })
       this.film = dataFilm().dapatDataFilm(search().getGenre, search().getsearch);
-      
-    }, 500 )
+    }, 500  )
+    
   },
   provide() {
     return {
@@ -56,7 +54,7 @@ export default {
   },
   data() {
     return {
-      film: {},
+      film : {},
       film1: {
         
         Judul: "",
@@ -74,7 +72,7 @@ export default {
     };
   },
   methods: {
-    
+   
     cek() {
       console.log(this.film);
     },

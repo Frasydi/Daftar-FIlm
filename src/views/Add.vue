@@ -235,26 +235,26 @@ export default {
         Gambar: this.gambar,
       };
       dataFilm().menambahkanFilm(hasil);
-      setTimeout(() => {
-        this.$router.push("/");
-      }, 2000);
-      /*
-            fetch("http://localhost:4000/tambah", {
-              method : "POST",
-              mode: "cors",
-             headers: {
-             "Content-type": "application/json; charset=UTF-8"
-            }   ,
-              body : JSON.stringify(hasil)
-          })
-          .then(res =>  res.json())
-          .then(data => {
-              console.log(data)
-          }
-          ).catch(err => {
-              console.log(err)
-          })
-          */
+     
+          //   fetch("http://localhost:4000/tambah", {
+            //     method : "POST",
+          //     mode: "cors",
+          //    headers: {
+            //    "Content-type": "application/json; charset=UTF-8"
+          //   }   ,
+          //     body : JSON.stringify(hasil)
+          // })
+          // .then(res =>  res.json())
+          // .then(data => {
+            //     console.log(data)
+          // }
+          // ).catch(err => {
+            //     console.log(err)
+          // })
+            setTimeout(() => {
+              this.$router.push("/");
+            }, 2000);
+          
     },
   },
 };
