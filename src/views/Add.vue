@@ -190,6 +190,9 @@ export default {
     };
   },
   methods: {
+    isEmpty(str) {
+    return (!str || str.length === 0)
+},
     cek() {
       console.log(this.Genre)
     },
