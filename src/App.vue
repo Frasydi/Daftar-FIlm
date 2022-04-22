@@ -21,10 +21,10 @@
             Genre
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#" @click="All()">All</a></li>
-            <li><a class="dropdown-item" href="#" @click="Action()">Action</a></li>
-            <li><a class="dropdown-item" href="#" @click="Romance()">Romance</a></li>
-            <li><a class="dropdown-item" href="#" @click="Comedy()">Comedy</a></li>
+            <li><a class="dropdown-item" href="#" @click="search().changeGenre('all')">All</a></li>
+            <li><a class="dropdown-item" href="#" @click="search().changeGenre('Action')">Action</a></li>
+            <li><a class="dropdown-item" href="#" @click="search().changeGenre('Romance')">Romance</a></li>
+            <li><a class="dropdown-item" href="#" @click="search().changeGenre('Comedy')">Comedy</a></li>
           </ul>
         </li>
         <li class="nav-item">
@@ -62,23 +62,7 @@ export default {
       
       search().changeSearch(this.cari)
       // search().changeSearch(this.$refs.cari.value)
-    },
-    All() {
-      search().changeGenre("all")
-      console.log(search().getGenre)
-    },
-    Action() {
-      search().changeGenre("Action")
-      console.log(search().getGenre)
-    },
-    Romance() {
-      search().changeGenre("Romance")
-      console.log(search().getGenre)
-    },
-    Comedy() {
-      search().changeGenre("Comedy")
-      console.log(search().getGenre)
-    },
+    }
   }
 }
 </script>
