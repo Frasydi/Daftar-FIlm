@@ -61,7 +61,7 @@ export default {
       modalname : "hidess",
       film : {},
       film1: {
-        
+        id : 0,
         Judul: "",
         Genre : "",
         Tanggal_liris: "",
@@ -86,7 +86,9 @@ export default {
       this.modalname = "hidess"
     },
     mengaktifkanmodal(val) {
+     
       this.modal = true;
+      this.film1.id = val.id
       this.film1.Judul = val.Judul;
       this.film1.Genre = val.Genre;
       this.film1.Tanggal_liris = val.Tanggal_liris;
@@ -98,8 +100,9 @@ export default {
       this.film1.Sinopsis = val.Sinopsis;
       this.film1.Gambar = val.Gambar;
       this.modalname = "show"
+       console.log(this.film1);
       console.log(this.$refs.modalref.classList)
-      console.log(this.film1);
+      
     },
   },
   computed: {
