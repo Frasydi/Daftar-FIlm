@@ -33,8 +33,8 @@
           </RouterLink>
         </li>
         <form @submit.prevent="cari"  class="d-flex">
-          <!-- ref="cari" -->
-        <input class="form-control me-2" type="search" v-model="cari"   @keyup="serch()" @keydown="serch(this)" @change="serch()"  placeholder="Search" aria-label="Search">
+
+        <input class="form-control me-2"  ref="cari" type="search"   @keyup="serch()" @keydown="serch(this)" @change="serch()"  placeholder="Search" aria-label="Search">
         </form>
         <li class="form-check form-switch">
         <input class="form-check-input" :checked="lampu().lampu" @change="lampu().Darkmode()" type="checkbox" id="flexSwitchCheckDefault">
@@ -60,8 +60,8 @@ export default {
   methods : {
     serch() {
       
-      search().changeSearch(this.cari)
-      // search().changeSearch(this.$refs.cari.value)
+      // search().changeSearch(this.cari)
+      search().changeSearch(this.$refs.cari.value)
     }
   }
 }
