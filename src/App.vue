@@ -54,7 +54,7 @@ export default {
   },
   data() {
     return {
-      cari : ""
+      
     }
   },
   methods : {
