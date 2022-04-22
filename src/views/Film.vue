@@ -181,6 +181,11 @@ img.datafil {
   float: left;
   box-shadow: 5px 10px 10px 5px var(--shadow);
 }
-
+@media only screen and (max-width:600px) {
+  img.datafil {
+    width: 100% !important;
+    height : 80vmax;
+  }
+}
 
 </style>

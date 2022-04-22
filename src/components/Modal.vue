@@ -106,14 +106,12 @@ span {
 }
 .card {
     border: 1px 1px 1px black;
-    
     z-index: auto;
     height: 90%;
     width:90%;
     top : 50%;
     left : 50%;
-    background-color: var(--backcolor);
-    
+    background-color: var(--backcolor)
 }
 ::-webkit-scrollbar {
   width: 20px;
