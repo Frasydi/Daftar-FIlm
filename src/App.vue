@@ -32,7 +32,7 @@
           Tambah Film
           </RouterLink>
         </li>
-        <form class="d-flex">
+        <form @submit.prevent="cari"  class="d-flex">
           <!-- ref="cari" -->
         <input class="form-control me-2" type="search" v-model="cari"   @keyup="serch()" @keydown="serch(this)" @change="serch()"  placeholder="Search" aria-label="Search">
         </form>
