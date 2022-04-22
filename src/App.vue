@@ -5,16 +5,17 @@
 </script>
 
 <template>
-<nav class="navbar navbar-expand-lg navbar-light">
+<div class="app-main">
+<nav class="navbar navbar-expand-lg navbar-light" id="mynavbar">
   <div class="container">
-    <a class="navbar-brand" href="#">FILM</a>
+    <h6 class="navbar-brand">FILM</h6>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <RouterLink class="nav-link active" to="/"> Home </RouterLink>
+          <RouterLink  class="nav-link active" to="/"> Home </RouterLink>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -27,49 +28,120 @@
             <li><a class="dropdown-item" href="#" @click="search().changeGenre('Comedy')">Comedy</a></li>
           </ul>
         </li>
+        
         <li class="nav-item">
-          <RouterLink to="/add" class="nav-link">
-          Tambah Film
+          <RouterLink to="/about" class="nav-link">
+          About me
           </RouterLink>
         </li>
-        <form @submit.prevent="serch()"  class="d-flex">
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Setting
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li class="dropdown-item">
+            <form class="form-check form-switch" id="lampus">
+            <input class="form-check-input" :checked="lampu().lampu" @change="lampu().Darkmode()" type="checkbox" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">{{lampu().cekifdark()}}</label>
+            </form>
 
-        <input class="form-control me-2" type="search" @keyup="serch()" @keydown="serch(this)" @change="serch()" placeholder="Search" aria-label="Search" ref="cari">
-        </form>
-        <li class="form-check form-switch">
-        <input class="form-check-input" :checked="lampu().lampu" @change="lampu().Darkmode()" type="checkbox" id="flexSwitchCheckDefault">
-        <label class="form-check-label" for="flexSwitchCheckDefault">{{lampu().cekifdark()}}</label>
+            </li>
+            
+          </ul>
         </li>
         
       </ul>
+      
     </div>
   </div>
 </nav>
-  <RouterView/>
+
+
+  <router-view v-slot="{ Component}">
+  <transition :name="transisitonname" mode="out-in">
+    <component :is="Component"  />
+  </transition>
+</router-view>
+</div>
 </template>
 
 <script>
 export default {
-  created() {
-  },
+  
   data() {
     return {
+      transisitonname : "",
       
     }
   },
+  watch : {
+    $route(to, from) {
+      console.log(from.meta.transition >= 0)
+      console.log(from.meta.transition)
+      this.transisitonname = !from ? 'routerkanankiri' :from.meta.transition >to.meta.transition ? 'routerkirikanan' : 'routerkanankiri'
+    }
+  },
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+    vm.prevRoute = from.path
+  })
+  },
   methods : {
-    serch() {
+    transname() {
       
-      // search().changeSearch(this.cari)
-      search().changeSearch(this.$refs.cari.value)
+      console.log(this.$route.fullPath) 
     }
   }
 }
 </script>
 
  <style>
- 
+ #lampus {
+   
+ }
+ .routerkirikanan-enter-from {
+   opacity: 0;
+   transform: translateX(100px);
+ }
+
+ .routerkirikanan-enter-active {
+   transition: all 0.4s ease-out;
+ }
+
+ .routerkirikanan-leave-to {
+   opacity : 0;
+   transform: translateX(-100px);
+ }
+ .routerkirikanan-leave-active {
+   transition: all 0.4s ease-in;
+ }
+
+
+ .routerkanankiri-enter-from {
+   opacity: 0;
+   transform: translateX(-100px);
+ }
+
+ .routerkanankiri-enter-active {
+   transition: all 0.4s ease-out;
+ }
+
+ .routerkanankiri-leave-to {
+   opacity : 0;
+   transform: translateX(100px);
+   
+ }
+ .routerkanankiri-leave-active {
+   transition: all 0.4s ease-in;
+ }
+
+
+#mynavbar {
+  background: rgba(255, 255, 255, 0.2);
+}
  .dark {
+   
     --backcolor : #1a1a1d;
     --textcolor : aliceblue;
     --inputcolor : #1a1a1d;
@@ -86,6 +158,9 @@ export default {
 }
 .dropdown-menu.show{
   animation : sizein 0.2s forwards
+}
+.dropdown-menu.show>li.dropdown-item,.dropdown-menu.show li.dropdown-item .form-check.form-switch .form-check-label {
+  color : #1a1a1d
 }
 @keyframes sizein {
   from { transform: scale(-10%);  }
@@ -109,7 +184,14 @@ form > input.form-control {
  background-color: var(--inputcolor);
   color: var(--textcolor);
 }
-
+.nav-link:hover {
+  animation : navselected 0.2s forwards ease-out
+}
+@keyframes navselected {
+  to {
+    transform : scale(105%, 105%)
+  }
+}
 .form-check-label {
   color : var(--textcolor)
 }

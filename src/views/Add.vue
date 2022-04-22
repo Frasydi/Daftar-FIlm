@@ -5,6 +5,8 @@ import { dataFilm } from "../store/dataFilm";
 </script>
 
 <template>
+<div>
+
   <h1>Menambahkan Data Film</h1>
   <div class="container">
 
@@ -181,6 +183,8 @@ import { dataFilm } from "../store/dataFilm";
     </div>
   </form>
   </div>
+</div>
+
 </template>
 
 <script>
