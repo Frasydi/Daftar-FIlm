@@ -75,7 +75,7 @@ p {
 }
 .sinopsis {
     overflow: auto;
-    height: 270px;
+    height: 30vh;
     width: 100%;
 }
 img {
