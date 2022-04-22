@@ -34,7 +34,7 @@
         </li>
         <form @submit.prevent="cari"  class="d-flex">
 
-        <input class="form-control me-2"  ref="cari" type="search"   @keyup="serch()" @keydown="serch(this)" @change="serch()"  placeholder="Search" aria-label="Search">
+        <input class="form-control me-2" type="search" @keyup="serch()" @keydown="serch(this)" @change="serch()" placeholder="Search" aria-label="Search" ref="cari">
         </form>
         <li class="form-check form-switch">
         <input class="form-check-input" :checked="lampu().lampu" @change="lampu().Darkmode()" type="checkbox" id="flexSwitchCheckDefault">
