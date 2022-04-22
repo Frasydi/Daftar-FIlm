@@ -2,7 +2,7 @@
   "name": "tubes-web2",
   "version": "0.0.0",
   "engines": {
-    "node": "v16.14.1",
+    "node": "16.14.1",
     "npm": "8.3.1"
   },
   "scripts": {
