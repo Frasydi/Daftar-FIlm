@@ -57,6 +57,7 @@ export default {
   },
   data() {
     return {
+     
       modalname : "hidess",
       film : {},
       film1: {
