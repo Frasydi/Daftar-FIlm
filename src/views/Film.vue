@@ -48,7 +48,8 @@ import { search } from "../store/dataFilm";
 
 export default {
   created() {
-     setInterval(()=> {
+    this.film = dataFilm().dapatDataFilm(search().getGenre, search().getsearch);
+    //  setInterval(()=> {
       //  fetch("http://localhost:4000?Genre="+search().getGenre+"&Search="+search().getsearch, {
       //         method : "GET",
       //         headers : {
@@ -63,9 +64,9 @@ export default {
       //     ).catch(err => {
       //         console.log(err)
       //     })
-      this.film = dataFilm().dapatDataFilm(search().getGenre, search().getsearch);
-      console.log(search().getsearch)
-    }, 20  )
+      
+      // console.log(search().getsearch)
+    // }, 20  )
     
   },
   provide() {
@@ -122,8 +123,7 @@ export default {
       this.film1.Sinopsis = val.Sinopsis;
       this.film1.Gambar = val.Gambar;
       this.modalname = "show"
-       console.log(this.film1);
-      console.log(this.$refs.modalref.classList)
+     
       
     },
   },
