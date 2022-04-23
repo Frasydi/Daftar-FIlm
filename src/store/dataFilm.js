@@ -128,7 +128,7 @@ export const dataFilm = defineStore('Film', {
               "id" : 3,
               "Judul": "Titanic",
               "Genre" : "Romance",
-              "Tanggal_liris": "1-09-1997",
+              "Tanggal_liris": "01-09-1997",
               "pameran": [
                 "Leonardo DiCaprio",
                 "Kate Winslet",
@@ -180,11 +180,24 @@ export const dataFilm = defineStore('Film', {
       }
     },
     actions : {
+      editdata(data) {
+        this.film = this.film.map( fil => {
+          if(fil.id == data.id) {
+            return data
+          }
+          return fil
+        })
+        console.log(this.film)
+      },
         menghapussuatufilm(id) {
           this.film.splice(this.film.findIndex(x => x.id == id), 1) 
         },
         menambahkanFilm(dataBaru) {
             this.film.push(dataBaru)
+        },
+       dapatDataFilmId(id) {
+         return this.film.filter(fil => fil.id == id)
+   
         },
         dapatDataFilm(Genres, Search) {
           let a = Genres === "all" ? this.film : this.film.filter( fil =>  fil.Genre == Genres )

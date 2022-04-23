@@ -2,6 +2,7 @@ import { createRouter, createWebHistory,useRoute } from 'vue-router'
 import Film from "../views/Film.vue"
 import Add from "../views/Add.vue"
 import About from "../views/About.vue"
+import edit from "../views/edit.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -18,12 +19,20 @@ const router = createRouter({
         meta: { transition: 1 },
        
         
-    }, {
+    },
+    {
+      path : "/edit/:id",
+      name : "edit",
+      component : edit,
+      meta : { transition:1 }
+    }
+    
+    ,{
       path : "/about",
       name : "about",
       component : About,
       meta: { transition: 2 },
-    }
+    }, 
     /*{
       path: '/about',
       name: 'about',

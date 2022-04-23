@@ -1,16 +1,11 @@
-<script setup>
-import { RouterLink } from "vue-router";
-import { dataFilm } from "../store/dataFilm";
-
-</script>
-
 <template>
-<div>
+  <div>
+  <h1>Edit</h1>
 
-  <h1>Menambahkan Data Film</h1>
+  
   <div class="container">
 
-  <form>
+  <form > 
     <label class="tips"
       >Untuk Pameran, Sutradara, dan Penulis, harap dipisahkan dengan tanda koma(,)</label
     >
@@ -20,14 +15,14 @@ import { dataFilm } from "../store/dataFilm";
         type="text"
         class="form-control"
         id="floatingInput"
-       
+        :value="film.Judul"
         placeholder="Judul"
         required
       />
       <label for="floatingInput">Judul</label>
     </div>
     <div class="form-floating mb-3">
-      <select  ref="Genre" class="form-select" aria-label="Default select example" >
+      <select :value="film.Genre"  ref="Genre" class="form-select" aria-label="Default select example" >
         <option value="Action" selected>Action</option>
         <option value="Comedy">Comedy</option>
         <option value="Romance">Romance</option>
@@ -36,12 +31,12 @@ import { dataFilm } from "../store/dataFilm";
     </div>
     <div class="form-floating mb-3">
       <input
-       ref="Tanggal_liris"
+        ref="Tanggal_liris"
         type="date"
         class="form-control"
         id="floatingPassword"
         placeholder="Tanggal Liris"
-      
+        :value="film.Tanggal_liris"
         required
       />
       <label for="floatingPassword">Tanggal Liris</label>
@@ -49,7 +44,8 @@ import { dataFilm } from "../store/dataFilm";
     <div class="form-floating mb-3">
       <input
          ref="Pameran"
-
+        :value="film.pameran.join(', ')"
+        
         type="text"
         class="form-control"
         id="floatingPassword"
@@ -66,7 +62,7 @@ import { dataFilm } from "../store/dataFilm";
         class="form-control"
         id="floatingPassword"
         placeholder="Durasi"
-       
+        :value="film.Durasi"
         required
       />
       <label for="floatingPassword">Durasi</label>
@@ -78,7 +74,7 @@ import { dataFilm } from "../store/dataFilm";
         class="form-control"
         id="floatingPassword"
         placeholder="Sutradara"
-       
+       :value="film.Sutradara.join(', ')"
         required
       />
       <label for="floatingPassword">Sutradara</label>
@@ -86,7 +82,8 @@ import { dataFilm } from "../store/dataFilm";
     <div class="form-floating mb-3">
       <input
        ref="Anggaran"
-
+       :value="film.Anggaran"
+        
         type="number"
         class="form-control"
         id="floatingPassword"
@@ -98,6 +95,8 @@ import { dataFilm } from "../store/dataFilm";
     </div>
     <div class="form-floating mb-3">
       <input ref="Penulis"
+       :value="film.Penulis.join(', ')"
+
         type="text"
         class="form-control"
         id="floatingPassword"
@@ -109,6 +108,8 @@ import { dataFilm } from "../store/dataFilm";
     </div>
     <div class="form-floating mb-3">
       <textarea
+       :value="film.Sinopsis"
+
        ref="Sinopsis"
         type="text"
         class="form-control"
@@ -127,7 +128,7 @@ import { dataFilm } from "../store/dataFilm";
           class="form-control"
           id="floatingPassword"
           placeholder="URL"
-         
+          :value="film.Gambar"
           required
         />
         <label for="floatingPassword">URL dari Gambar</label>
@@ -185,26 +186,39 @@ import { dataFilm } from "../store/dataFilm";
   </div>
 </div>
 
+
 </template>
 
 <script>
+import { dataFilm } from '../store/dataFilm'
 export default {
-  data() {
-    return {
-      salah: false,
-      alert_hide: false,
-     
-    };
-  },
-  methods: {
-    isEmpty(str) {
-    return (!str || str.length === 0)
-},
-    cek() {
-      console.log(this.Genre)
+    
+
+    created() {
+         this.film = dataFilm().dapatDataFilmId(this.$route.params.id)[0]
+         
+         let tanggals = this.film.Tanggal_liris.split("-")
+         this.film.Tanggal_liris = tanggals[2] + "-"+tanggals[1]+"-"+tanggals[0]
+         
+
+      
     },
-    submit(e) {
-      e.preventDefault();
+    watch : {
+    },
+    data() {
+        return {
+            film : {},
+            tanggal : {},
+            salah : false,
+            alert_hide : false
+        }
+    },
+    methods : {
+        isEmpty(str) {
+            return (!str||str.length == 0)
+        },
+        submit(e) {
+            e.preventDefault();
       let Judul = this.$refs.Judul.value
       let Genre = this.$refs.Genre.value
       let Anggaran = this.$refs.Anggaran.value
@@ -238,9 +252,9 @@ export default {
       Pameran = Pameran.split(",");
       Sutradara = Sutradara.split(",");
       Penulis = Penulis.split(",");
-      let ids = dataFilm().mendapatkanidterakhir
+      
       let hasil = {
-        id : ids,
+        id : this.film.id,
         Judul: Judul,
         Genre : Genre,
         Tanggal_liris: Tanggal_liris,
@@ -252,7 +266,8 @@ export default {
         Sinopsis: Sinopsis,
         Gambar: Gambar,
       };
-      dataFilm().menambahkanFilm(hasil);
+      this.film = hasil
+      dataFilm().editdata(this.film)
      
           //   fetch("http://localhost:4000/tambah", {
             //     method : "POST",
@@ -272,13 +287,13 @@ export default {
             setTimeout(() => {
               this.$router.push("/");
             }, 2000);
-          
-    },
-  },
-};
+        }
+    }
+    
+}
+
 </script>
 
 <style scoped src="../assets/modiDataStyle.css">
-
 
 </style>
