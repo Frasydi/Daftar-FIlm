@@ -18,8 +18,8 @@ import { RouterLink } from "vue-router";
     <a class="page"  @click="pages(1)" href="#">Next</a>
     </div>
     <h4>Page : {{page}} </h4>
-    <form @submit.prevent="serch()" id="mencari" >
-        <input ref="dapatyangdicari" id="inputcari"  class="form-control me-2" type="search" @keyup="serch()" @keydown="serch()" @change="serch()" placeholder="Search" aria-label="Search">
+    <form @submit.prevent="serch()" id="mencari2" >
+        <input ref="dapatyangdicari" id="inputcari2"  class="form-control me-2" type="search" @keyup="serch()" @keydown="serch()" @change="serch()" placeholder="Search" aria-label="Search">
     </form>
     
     </div>
@@ -161,7 +161,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
 #headerfilm {
   display: flex;
   
@@ -175,10 +175,10 @@ export default {
 .marginBaru {
   width : 91%;
 }
-#inputcari {
+#inputcari2 {
     width: 100%;
 }
-#mencari {
+#mencari2 {
     width: 50%;
 }
  
@@ -213,7 +213,7 @@ h4 {
 }
 .modal {
   z-index: 98;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.3);
   
 }
 
@@ -279,7 +279,7 @@ img.datafil {
 }
 
 @media only screen and (max-width:600px) {
-  #mencari {
+  #mencari2 {
       width: 70%;
       height: 7vh;
       margin-left: 30%;
