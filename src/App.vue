@@ -99,9 +99,7 @@ export default {
 </script>
 
  <style>
- #lampus {
-   
- }
+ 
  .routerkirikanan-enter-from {
    opacity: 0;
    transform: translateX(100px);
