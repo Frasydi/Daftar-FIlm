@@ -3,6 +3,8 @@ import Film from "../views/Film.vue"
 import Add from "../views/Add.vue"
 import About from "../views/About.vue"
 import edit from "../views/edit.vue"
+import DataBase from "../views/DataBase.vue"
+import FilmReadOnly from "../views/FilmReadOnly.vue"
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -11,6 +13,12 @@ const router = createRouter({
       name: 'home',
       component: Film,
       meta: { transition: 0 },
+    },
+    {
+      path : "/tmdb",
+      name : "tmdb",
+      component : FilmReadOnly,
+      meta : { transition : 1 }
     },
     {
         path : '/add',
@@ -32,7 +40,11 @@ const router = createRouter({
       name : "about",
       component : About,
       meta: { transition: 2 },
-    }, 
+    }, {
+      path : "/database",
+      name : "database",
+      component : DataBase
+    }
     /*{
       path: '/about',
       name: 'about',
