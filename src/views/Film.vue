@@ -162,8 +162,8 @@ export default {
 }
 
 #mencari {
-  text-align: right;
-  transform: translateX(110%);
+  text-align: left;
+  
 }
 
 div.add2 > * {
