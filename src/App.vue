@@ -1,6 +1,6 @@
 <script setup>
     import { RouterLink, RouterView } from 'vue-router'
-    import { lampu } from './store/dataFilm';
+    import { dataFilm, lampu } from './store/dataFilm';
     import { search } from './store/dataFilm';
 </script>
 
@@ -22,10 +22,10 @@
             Genre
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#" @click="search().changeGenre('all')">All</a></li>
-            <li><a class="dropdown-item" href="#" @click="search().changeGenre('Action')">Action</a></li>
-            <li><a class="dropdown-item" href="#" @click="search().changeGenre('Romance')">Romance</a></li>
-            <li><a class="dropdown-item" href="#" @click="search().changeGenre('Comedy')">Comedy</a></li>
+            <li><a class="dropdown-item" href="#" @click="mengantiGenre('all')">All</a></li>
+            <li><a class="dropdown-item" href="#" @click="mengantiGenre('Action')">Action</a></li>
+            <li><a class="dropdown-item" href="#" @click="mengantiGenre('Romance')">Romance</a></li>
+            <li><a class="dropdown-item" href="#" @click="mengantiGenre('Comedy')">Comedy</a></li>
           </ul>
         </li>
         
@@ -81,7 +81,6 @@ export default {
     $route(to, from) {
       console.log(typeof from.meta.transition == 'undefined')
       this.transisitonname = typeof from.meta.transition == 'undefined' ? 'routerkanankiri' :from.meta.transition >to.meta.transition ? 'routerkanankiri' : 'routerkirikanan'
-      
     }
   },
   beforeRouteEnter(to, from, next) {
@@ -90,6 +89,10 @@ export default {
   })
   },
   methods : {
+    mengantiGenre(genre) {
+      search().changeGenre(genre)
+      dataFilm().dapatDataFilm()
+    },
     transname() {
       
       console.log(this.$route.fullPath) 

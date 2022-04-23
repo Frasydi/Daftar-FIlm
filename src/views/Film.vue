@@ -29,7 +29,7 @@ import { RouterLink } from "vue-router";
     
     </div>
     <div class="container">
-      <div v-for="(fil, ind) in film" :key="ind" class="cardFilm">
+      <div v-for="(fil, ind) in dataFilm().dapatDataFilm()" :key="ind" class="cardFilm">
           <img @click="mengaktifkanmodal(fil)" :src="fil.Gambar" :alt="fil.Gambar" class="datafil" />
       </div>
     </div>
@@ -48,7 +48,7 @@ import { search } from "../store/dataFilm";
 
 export default {
   created() {
-    this.film = dataFilm().dapatDataFilm(search().getGenre, search().getsearch);
+   
     //  setInterval(()=> {
       //  fetch("http://localhost:4000?Genre="+search().getGenre+"&Search="+search().getsearch, {
       //         method : "GET",
@@ -95,11 +95,15 @@ export default {
       modal: false,
     };
   },
+  watch : {
+    
+  }
+  ,
   methods: {
    serch() {
-      
       // search().changeSearch(this.cari)
       search().changeSearch(this.$refs.cari.value)
+     
     },
     cek() {
       console.log(this.film);
