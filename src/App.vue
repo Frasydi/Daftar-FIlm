@@ -77,9 +77,9 @@ export default {
   },
   watch : {
     $route(to, from) {
-      console.log(from.meta.transition >= 0)
-      console.log(from.meta.transition)
-      this.transisitonname = !from ? 'routerkanankiri' :from.meta.transition >to.meta.transition ? 'routerkanankiri' : 'routerkirikanan'
+      console.log(typeof from.meta.transition == 'undefined')
+      this.transisitonname = typeof from.meta.transition == 'undefined' ? 'routerkanankiri' :from.meta.transition >to.meta.transition ? 'routerkanankiri' : 'routerkirikanan'
+      
     }
   },
   beforeRouteEnter(to, from, next) {
