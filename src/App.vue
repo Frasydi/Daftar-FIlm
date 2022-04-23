@@ -17,7 +17,11 @@
         <li class="nav-item">
           <RouterLink  class="nav-link active" to="/"> Home </RouterLink>
         </li>
-         
+         <li class="nav-item">
+          <RouterLink to="/tmdb" class="nav-link">
+          TMDB
+          </RouterLink>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Genre

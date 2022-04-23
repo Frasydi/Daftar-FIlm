@@ -161,7 +161,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 #headerfilm {
   display: flex;
   
