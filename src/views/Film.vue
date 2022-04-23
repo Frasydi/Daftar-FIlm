@@ -48,7 +48,6 @@ import { search } from "../store/dataFilm";
 
 export default {
   created() {
-    
      setInterval(()=> {
       //  fetch("http://localhost:4000?Genre="+search().getGenre+"&Search="+search().getsearch, {
       //         method : "GET",
@@ -66,7 +65,7 @@ export default {
       //     })
       this.film = dataFilm().dapatDataFilm(search().getGenre, search().getsearch);
       console.log(search().getsearch)
-    }, 500  )
+    }, 20  )
     
   },
   provide() {
