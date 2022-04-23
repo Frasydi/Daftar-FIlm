@@ -57,6 +57,7 @@ export const dataFilm = defineStore('Film', {
     state : () => ({
        film :  [
             {
+              "id" : 1,
               "Judul": "Avengers End Game",
               "Genre" : "Action",
               "Tanggal_liris": "22-04-2019",
@@ -92,6 +93,7 @@ export const dataFilm = defineStore('Film', {
               "Gambar": "https://upload.wikimedia.org/wikipedia/id/0/0d/Avengers_Endgame_poster.jpg"
             },
             {
+              "id" : 2,
               "Judul": "Spiderman : No Way Home",
               "Genre" : "Action",
               "Tanggal_liris": "15-12-2021",
@@ -123,6 +125,7 @@ export const dataFilm = defineStore('Film', {
               "Gambar": "https://cdn.cgv.id/uploads/movie/compressed/21021900.jpg"
             },
             {
+              "id" : 3,
               "Judul": "Titanic",
               "Genre" : "Romance",
               "Tanggal_liris": "1-09-1997",
@@ -145,7 +148,7 @@ export const dataFilm = defineStore('Film', {
               "Sinopsis": "Berawal dari kisah pencarian harta karun seorang Brock Lovett dan timnya. Dengan objek kapal RMS Titanic yang dipercaya menyimpan Heart Of The Oceans, sebuah kalung berlian yang terkubur di dalam bangkai kapal raksasa tersebut. Namun, nyatanya semua usaha mereka mengulik kapal yang telah tenggelam bertahun-tahun itu tak membuahkan hasil. Mereka hanya menemui sebuah peti yang terdapat lukisan seorang wanita memakai kalung berlian yang dicari. Siapakah wanita itu? ",
               "Gambar": "https://upload.wikimedia.org/wikipedia/id/1/19/Titanic_%28Official_Film_Poster%29.png"
             }, {
-              
+              "id" : 4,
               "Judul": "Hotel Transylvania: Transformania ",
               "Genre" : "Comedy",
               "Tanggal_liris": "12-01-2022",
@@ -171,7 +174,15 @@ export const dataFilm = defineStore('Film', {
             }
           ]
     }),
+    getters : {
+      mendapatkanidterakhir(state) {
+        return  this.film.length > 0 ? state.film.at(-1).id+1 : 1
+      }
+    },
     actions : {
+        menghapussuatufilm(id) {
+          this.film.splice(this.film.findIndex(x => x.id == id), 1) 
+        },
         menambahkanFilm(dataBaru) {
             this.film.push(dataBaru)
         },

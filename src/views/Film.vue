@@ -6,11 +6,28 @@ import { RouterLink } from "vue-router";
 </script>
 
 <template>
- 
+ <div>
+
   <div class="utama2">
     <div class="container">
     <h1>Data-data Film</h1>
+    <div id="headerfilm">
     <h4>Genre : {{search().getGenre}} </h4>
+    <form @submit.prevent="serch()" id="mencari"  class="d-flex">
+        <input  class="form-control me-2" type="search" @keyup="serch()" @keydown="serch(this)" @change="serch()" placeholder="Search" aria-label="Search" ref="cari">
+      </form>
+    </div>
+    <div id="headerfilm" class="container marginBaru">
+    <RouterLink to="/add" class="tambahFilm"  >
+    <div data-toggle="tooltip" data-placement="top" title="Tambah data film">
+    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+    </svg>
+      
+    </div>
+    </RouterLink> 
+    
+    </div>
     <div class="container">
       <div v-for="(fil, ind) in film" :key="ind" class="cardFilm">
           <img @click="mengaktifkanmodal(fil)" :src="fil.Gambar" :alt="fil.Gambar" class="datafil" />
@@ -21,6 +38,7 @@ import { RouterLink } from "vue-router";
 
   <Modal @modaloffs="modaloff" class="modal" :class="modalname" />
   
+ </div>
 </template>
 
 <script>
@@ -61,7 +79,7 @@ export default {
       modalname : "hidess",
       film : {},
       film1: {
-        
+        id : 0,
         Judul: "",
         Genre : "",
         Tanggal_liris: "",
@@ -77,7 +95,11 @@ export default {
     };
   },
   methods: {
-   
+   serch() {
+      
+      // search().changeSearch(this.cari)
+      search().changeSearch(this.$refs.cari.value)
+    },
     cek() {
       console.log(this.film);
     },
@@ -86,7 +108,9 @@ export default {
       this.modalname = "hidess"
     },
     mengaktifkanmodal(val) {
+     
       this.modal = true;
+      this.film1.id = val.id
       this.film1.Judul = val.Judul;
       this.film1.Genre = val.Genre;
       this.film1.Tanggal_liris = val.Tanggal_liris;
@@ -98,8 +122,9 @@ export default {
       this.film1.Sinopsis = val.Sinopsis;
       this.film1.Gambar = val.Gambar;
       this.modalname = "show"
+       console.log(this.film1);
       console.log(this.$refs.modalref.classList)
-      console.log(this.film1);
+      
     },
   },
   computed: {
@@ -113,6 +138,19 @@ export default {
 };
 </script>
 <style>
+#headerfilm {
+  display: flex;
+
+}
+
+.marginBaru {
+  width : 91%;
+}
+
+#mencari {
+  width: 30%;
+  margin-left: 50%;
+}
 
 div.add2 > * {
   top: 50%;
@@ -122,8 +160,13 @@ div.add2 > * {
   z-index: -1;
 }
 
+.tambahFilm {
+  color : var(--textcolor)
+}
 
-
+.tambahFilm>* {
+  transition: all 1s;
+}
 
 .add {
   display: fixed;
@@ -169,15 +212,63 @@ div.form-check.form-switch {
   top : 0;
   right : 0;
 }
+:root {
+  --cardsize : 200px;
+  --cardheight: 300px;
+}
 img.datafil {
   cursor: pointer;
-  width: 200px;
-  height: 300px;
+  --cardsize : 200px;
+  --cardheight: 300px;
+  width: var(--cardsize);
+  height: var(--cardheight);
   border-radius: 10% 10%;
   margin: 10px;
   float: left;
   box-shadow: 5px 10px 10px 5px var(--shadow);
 }
+@keyframes hoverin {
+      to {
+        transform: scale(104%, 104%);
+      }
+    }
+    @keyframes hoverout {
+      to {
+        transform: scale(100%, 100%)
+      }
+    }
+@media only screen and (min-width:600px) {
+    img.datafil {
+      animation : hoverout 0.4s forwards ease-out;
+      animation-direction: reverse;
+    }
+    img.datafil:hover {
+    animation: hoverin 0.4s forwards ease-out;
+    }
+    
+}
 
+@media only screen and (max-width:600px) {
+  #mencari {
+      width: 70%;
+      height: 7vh;
+      margin-left: 30%;
+  }
+  img.datafil {
+    --cardsize: 100% !important;
+    --cardheight : 80vmax;
+     width: var(--cardsize);
+     height: var(--cardheight);
+  }
+  img.datafil:hover {
+    animation : hoverselect 0.5s forwards
+  }
+   @keyframes hoverselect {
+      to {
+        opacity: 50%;
+      }
+  }
+  
+}
 
 </style>

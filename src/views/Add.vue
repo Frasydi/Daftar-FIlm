@@ -5,6 +5,8 @@ import { dataFilm } from "../store/dataFilm";
 </script>
 
 <template>
+<div>
+
   <h1>Menambahkan Data Film</h1>
   <div class="container">
 
@@ -181,6 +183,8 @@ import { dataFilm } from "../store/dataFilm";
     </div>
   </form>
   </div>
+</div>
+
 </template>
 
 <script>
@@ -228,13 +232,15 @@ export default {
       this.salah = false;
       this.alert_hide = true;
       let tanggal = new Date();
-      tanggal =
+   
       tanggal.getDate() + "-" + tanggal.getMonth() + "-" + tanggal.getFullYear();
       tanggal = tanggal;
       Pameran = Pameran.split(",");
       Sutradara = Sutradara.split(",");
       Penulis = Penulis.split(",");
+      let ids = dataFilm().mendapatkanidterakhir
       let hasil = {
+        id : ids,
         Judul: Judul,
         Genre : Genre,
         Tanggal_liris: Tanggal_liris,

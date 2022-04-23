@@ -1,3 +1,6 @@
+<script setup>
+</script>
+
 <template>
 <div class="utama">
     <button class="keluar" @click="mematikanmodal">X</button>
@@ -14,7 +17,7 @@
 <span>Penulis </span>&emsp;&emsp;&nbsp; :  &nbsp; {{datafilm.Penulis.join(", ")}}  <br>
 <span>Sinopsis </span> : <p class="sinopsis" v-html="datafilm.Sinopsis"> </p> <br>
 
-
+<button class="btn btn-danger hps" @click="menghapus">Hapus</button>
             </div>
         </div>
     </div>
@@ -22,11 +25,18 @@
 </template>
 
 <script>
+import { dataFilm } from '../store/dataFilm';
     export default {
         inject : ["datafilm"],
         methods: {
             mematikanmodal() {
                 console.log("dapat")
+                this.$emit('modaloffs')
+            },
+            menghapus() {
+                console.log(this.datafilm.id)
+                dataFilm().menghapussuatufilm(this.datafilm.id)
+                
                 this.$emit('modaloffs')
             }
         },
@@ -38,13 +48,9 @@
 </script>
 
 <style scoped>
-.dark {
-    --backcolor : #1a1a1d;
-    --textcolor : aliceblue;
-}
-.light {
-  --backcolor : aliceblue;
-    --textcolor : #1a1a1d;
+.hps {
+    color : var(--backcolor);
+    text-align: center;
 }
 * {
     color : var(--textcolor)
@@ -69,7 +75,7 @@ p {
 }
 .sinopsis {
     overflow: auto;
-    height: 270px;
+    height: 30vh;
     width: 100%;
 }
 img {
@@ -100,14 +106,12 @@ span {
 }
 .card {
     border: 1px 1px 1px black;
-    
     z-index: auto;
     height: 90%;
     width:90%;
     top : 50%;
     left : 50%;
-    background-color: var(--backcolor);
-    
+    background-color: var(--backcolor)
 }
 ::-webkit-scrollbar {
   width: 20px;
