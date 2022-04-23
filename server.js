@@ -9,7 +9,12 @@ app.use(serveStatic(path.join(__dirname, 'dist')));
 app.get("/add", (req,res) => {
     res.redirect("/")
 })
-
+app.get("/edit", (req,res) => {
+    res.redirect("/")
+})
+app.get("/about", (req,res) => {
+    res.redirect("/")
+})
 
 const port = process.env.PORT || 80;
 app.listen(port);

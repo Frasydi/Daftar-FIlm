@@ -1,57 +1,82 @@
 <script setup>
+import { RouterLink } from 'vue-router';
+
+
 </script>
 
 <template>
-<div class="utama">
+  <div class="utama">
     <button class="keluar" @click="mematikanmodal">X</button>
-    <div class="card" >
-        <div class="container-fluit">
-           <div class="container texts">
-<span>Judul</span>&emsp;&emsp;&emsp;&emsp;: &nbsp;{{datafilm.Judul}}<br>
-<span>Genre</span>&emsp;&emsp;&emsp;&emsp;: &nbsp;{{datafilm.Genre}}<br>
-<span>Tanggal Liris </span>&nbsp;: &nbsp; {{datafilm.Tanggal_liris}}  <br>
-<span>Pameran </span>&emsp;&emsp;: &nbsp;{{ !datafilm.pameran ? "" : datafilm.pameran.join(", ")}}<br>
-<span>durasi </span>&emsp;&emsp;&emsp; :  &nbsp; {{datafilm.durasi}} menit<br>
-<span>Sutradara </span>&emsp;&nbsp; :  &nbsp; {{!datafilm.Sutradara ? "" : datafilm.Sutradara.join(", ")}}  <br>
-<span>Anggaran </span>&emsp;&nbsp; :  &nbsp; ${{datafilm.Anggaran}} juta  <br>
-<span>Penulis </span>&emsp;&emsp;&nbsp; :  &nbsp; {{datafilm.Penulis.join(", ")}}  <br>
-<span>Sinopsis </span> : <p class="sinopsis" v-html="datafilm.Sinopsis"> </p> <br>
+    <div class="card">
+      <div class="container-fluit">
+        <div class="container texts">
+          <span>Judul</span>&emsp;&emsp;&emsp;&emsp;: &nbsp;{{ datafilm.Judul }}<br />
+          <span>Genre</span>&emsp;&emsp;&emsp;&emsp;: &nbsp;{{ datafilm.Genre }}<br />
+          <span>Tanggal Liris </span>&nbsp;: &nbsp; {{ datafilm.Tanggal_liris }} <br />
+          <span>Pameran </span>&emsp;&emsp;: &nbsp;{{
+            !datafilm.pameran ? "" : datafilm.pameran.join(", ")
+          }}<br />
+          <span>durasi </span>&emsp;&emsp;&emsp; : &nbsp;
+          {{ datafilm.durasi }} menit<br />
+          <span>Sutradara </span>&emsp;&nbsp; : &nbsp;
+          {{ !datafilm.Sutradara ? "" : datafilm.Sutradara.join(", ") }} <br />
+          <span>Anggaran </span>&emsp;&nbsp; : &nbsp; ${{ datafilm.Anggaran }} juta <br />
+          <span>Penulis </span>&emsp;&emsp;&nbsp; : &nbsp;
+          {{ datafilm.Penulis.join(", ") }} <br />
+          <span>Sinopsis </span> :
+          <p class="sinopsis" v-html="datafilm.Sinopsis"></p>
+          <br />
 
-<button class="btn btn-danger hps" @click="menghapus">Hapus</button>
-            </div>
+          <div class="tomboluntukmodif">
+            <button class="btn btn-danger hps" @click="menghapus">Hapus</button>
+            <router-link :to="'/edit/'+datafilm.id">
+                <button class="btn btn-success edt">Edit</button>
+            </router-link>
+
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
-import { dataFilm } from '../store/dataFilm';
-    export default {
-        inject : ["datafilm"],
-        methods: {
-            mematikanmodal() {
-                console.log("dapat")
-                this.$emit('modaloffs')
-            },
-            menghapus() {
-                console.log(this.datafilm.id)
-                dataFilm().menghapussuatufilm(this.datafilm.id)
-                
-                this.$emit('modaloffs')
-            }
-        },
-        props : {
-            dark : Boolean
-        }
-        
-    }
+import { dataFilm } from "../store/dataFilm";
+export default {
+  inject: ["datafilm"],
+  methods: {
+    mematikanmodal() {
+      console.log("dapat");
+      this.$emit("modaloffs");
+    },
+    menghapus() {
+      console.log(this.datafilm.id);
+      dataFilm().menghapussuatufilm(this.datafilm.id);
+
+      this.$emit("modaloffs");
+    },
+  },
+  props: {
+    dark: Boolean,
+  },
+};
 </script>
 
 <style scoped>
-.hps {
-    color : var(--backcolor);
-    text-align: center;
+
+.tomboluntukmodif {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    
 }
+.tomboluntukmodif > *,.tomboluntukmodif>*>button {
+    color : aliceblue;
+    margin: 0 5px;
+}
+
+
+
 * {
     color : var(--textcolor)
 }
@@ -79,7 +104,7 @@ p {
     width: 100%;
 }
 img {
-    
+
     width : 408px;
     height : 460px;
     border-radius: 10% 10% 0 0;
