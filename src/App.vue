@@ -79,7 +79,7 @@ export default {
     $route(to, from) {
       console.log(from.meta.transition >= 0)
       console.log(from.meta.transition)
-      this.transisitonname = !from ? 'routerkanankiri' :from.meta.transition >to.meta.transition ? 'routerkirikanan' : 'routerkanankiri'
+      this.transisitonname = !from ? 'routerkanankiri' :from.meta.transition >to.meta.transition ? 'routerkanankiri' : 'routerkirikanan'
     }
   },
   beforeRouteEnter(to, from, next) {
