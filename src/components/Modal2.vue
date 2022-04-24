@@ -7,7 +7,7 @@ import { RouterLink } from 'vue-router';
 <template>
   <div class="utama">
     <button class="keluar" @click="mematikanmodal">X</button>
-    <div class="card">
+    <div class="card" ref="kartu">
       <div class="container-fluit">
         <div class="container texts">
           <span>Judul</span>&emsp;&emsp;&emsp;&emsp;: &nbsp;{{ datafilm.Judul }}<br />
@@ -30,9 +30,16 @@ import { RouterLink } from 'vue-router';
 </template>
 
 <script>
-import { dataFilm } from "../store/dataFilm";
+
 export default {
+  
+  data() {
+    return {
+      image : ""
+    }
+  },
   inject: ["datafilm"],
+  
   methods: {
     mematikanmodal() {
       console.log("dapat");
@@ -119,13 +126,14 @@ span {
     background-color: var(--backcolor);
 }
 .card {
+    --GambarPoster : "";
     border: 1px 1px 1px black;
     z-index: auto;
     height: 90%;
     width:90%;
     top : 50%;
     left : 50%;
-    background-color: var(--backcolor)
+    background-color: var(--backcolor);
 }
 ::-webkit-scrollbar {
   width: 20px;

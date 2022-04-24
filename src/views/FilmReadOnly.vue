@@ -88,6 +88,7 @@ export default {
         Anggaran: 0,
         Sinopsis: "",
         Gambar: "",
+        Poster: "",
       },
       modal: false,
     };
@@ -148,6 +149,7 @@ export default {
       this.film1.Tipe = val.media_type;
       this.film1.Sinopsis = val.overview;
       this.film1.Gambar = val.poster_path;
+      this.film1.Poster = val.backdrop_path;
       this.modalname = "show"
     },
   },
