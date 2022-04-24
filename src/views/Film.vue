@@ -14,9 +14,9 @@ import { RouterLink } from "vue-router";
     <div id="headerfilm">
     <h4>Genre : {{search().getGenre}}</h4>
     
-    <form @submit.prevent="serch()" id="mencari"  class="d-flex">
-        <input  class="form-control me-2" type="search" @keyup="serch()" @keydown="serch(this)" @change="serch()" placeholder="Search" aria-label="Search" ref="cari">
-      </form>
+      <div  id="mencari"  class="d-flex">
+        <input  class="form-control me-2" type="search" @keyup="serch()" @keydown="serch()" @change="serch()" placeholder="Search" aria-label="Search" ref="cari">
+      </div>
     </div>
     <div id="headerfilm" class="container marginBaru">
     <RouterLink to="/add" class="tambahFilm"  >
@@ -162,8 +162,8 @@ export default {
 }
 
 #mencari {
-  text-align: left;
-  
+  padding-left: 30%;
+  width : 70%
 }
 
 div.add2 > * {

@@ -217,7 +217,7 @@ form > input.form-control {
     height : 100%;
   }
   body{
-      background-image: var(--backcolor2);
+      background: var(--backcolor2);
       height: 100%;
       margin: 0;
       background-repeat: no-repeat;
