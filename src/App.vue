@@ -15,10 +15,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <RouterLink  class="nav-link active" to="/"> Home </RouterLink>
+          <RouterLink  class="nav-link" to="/"> Home </RouterLink>
         </li>
         <li class="nav-item">
-          <RouterLink  class="nav-link active" to="/film"> My List </RouterLink>
+          <RouterLink  class="nav-link" to="/film"> My List </RouterLink>
         </li>
          <li class="nav-item">
           <RouterLink to="/tmdb" class="nav-link">
