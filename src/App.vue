@@ -1,6 +1,6 @@
 <script setup>
     import { RouterLink, RouterView } from 'vue-router'
-    import { lampu } from './store/dataFilm';
+    import { dataFilm, lampu } from './store/dataFilm';
     import { search } from './store/dataFilm';
 </script>
 
@@ -17,15 +17,23 @@
         <li class="nav-item">
           <RouterLink  class="nav-link active" to="/"> Home </RouterLink>
         </li>
+        <li class="nav-item">
+          <RouterLink  class="nav-link active" to="/film"> My List </RouterLink>
+        </li>
+         <li class="nav-item">
+          <RouterLink to="/tmdb" class="nav-link">
+          TMDB
+          </RouterLink>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Genre
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#" @click="search().changeGenre('all')">All</a></li>
-            <li><a class="dropdown-item" href="#" @click="search().changeGenre('Action')">Action</a></li>
-            <li><a class="dropdown-item" href="#" @click="search().changeGenre('Romance')">Romance</a></li>
-            <li><a class="dropdown-item" href="#" @click="search().changeGenre('Comedy')">Comedy</a></li>
+            <li><a class="dropdown-item" href="#" @click="mengantiGenre('all')">All</a></li>
+            <li><a class="dropdown-item" href="#" @click="mengantiGenre('Action')">Action</a></li>
+            <li><a class="dropdown-item" href="#" @click="mengantiGenre('Romance')">Romance</a></li>
+            <li><a class="dropdown-item" href="#" @click="mengantiGenre('Comedy')">Comedy</a></li>
           </ul>
         </li>
         
@@ -81,7 +89,6 @@ export default {
     $route(to, from) {
       console.log(typeof from.meta.transition == 'undefined')
       this.transisitonname = typeof from.meta.transition == 'undefined' ? 'routerkanankiri' :from.meta.transition >to.meta.transition ? 'routerkanankiri' : 'routerkirikanan'
-      
     }
   },
   beforeRouteEnter(to, from, next) {
@@ -90,6 +97,10 @@ export default {
   })
   },
   methods : {
+    mengantiGenre(genre) {
+      search().changeGenre(genre)
+      dataFilm().dapatDataFilm()
+    },
     transname() {
       
       console.log(this.$route.fullPath) 
@@ -99,9 +110,7 @@ export default {
 </script>
 
  <style>
- #lampus {
-   
- }
+ 
  .routerkirikanan-enter-from {
    opacity: 0;
    transform: translateX(100px);
@@ -145,12 +154,15 @@ export default {
  .dark {
    
     --backcolor : #1a1a1d;
+    --backcolor2 : #1a1a1d;
     --textcolor : aliceblue;
     --inputcolor : #1a1a1d;
     --navicon : url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
     --notactivecolor : rgba(255,255,255,0.6);
 }
 .light {
+  --gradient : linear-gradient( #ffafbd ,#ffc3a0);
+  --backcolor2 : linear-gradient(#a1c4fd, #c2e9fb);
   --backcolor : aliceblue;
     --textcolor : #1a1a1d;
     --inputcolor : rgb(255, 252, 246);
@@ -201,8 +213,16 @@ form > input.form-control {
     background-color: #1a1a1d;
     border-color: aliceblue;
 }
-  body {
-      background-color: var(--backcolor);
+  html {
+    height : 100%;
+  }
+  body{
+      background-image: var(--backcolor2);
+      height: 100%;
+      margin: 0;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      
   }
   
  </style>

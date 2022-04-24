@@ -55,6 +55,7 @@ export const lampu = defineStore('lampu', {
 })
 export const dataFilm = defineStore('Film', {
     state : () => ({
+      
        film :  [
             {
               "id" : 1,
@@ -190,6 +191,7 @@ export const dataFilm = defineStore('Film', {
         console.log(this.film)
       },
         menghapussuatufilm(id) {
+          
           this.film.splice(this.film.findIndex(x => x.id == id), 1) 
         },
         menambahkanFilm(dataBaru) {
@@ -199,7 +201,9 @@ export const dataFilm = defineStore('Film', {
          return this.film.filter(fil => fil.id == id)
    
         },
-        dapatDataFilm(Genres, Search) {
+        dapatDataFilm() {
+          let Genres = search().getGenre
+          let Search = search().getsearch
           let a = Genres === "all" ? this.film : this.film.filter( fil =>  fil.Genre == Genres )
           if((!Search||Search.length == 0)) {
             return a

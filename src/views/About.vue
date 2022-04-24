@@ -37,7 +37,10 @@
 export default {
     methods : {
         redirect(url) {
-           window.location.href = url
+           var a = document.createElement('a');
+            a.target="_blank";
+            a.href=url;
+            a.click();
         }
     }
 }

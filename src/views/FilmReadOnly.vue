@@ -1,5 +1,5 @@
 <script setup>
-import Modal from "../components/Modal.vue";
+import Modal2 from "../components/Modal2.vue";
 import { RouterLink } from "vue-router";
 
 //import DataFilm from "./components/DataFilm.vue";
@@ -10,35 +10,28 @@ import { RouterLink } from "vue-router";
 
   <div class="utama2">
     <div class="container">
-    <h1>Data-data Film</h1>
+    <h1>Data-data Film Dari TMDB</h1>
+
     <div id="headerfilm">
-    <h4>Genre : {{search().getGenre}}</h4>
-    
-    <form @submit.prevent="serch()" id="mencari"  class="d-flex">
-        <input  class="form-control me-2" type="search" @keyup="serch()" @keydown="serch(this)" @change="serch()" placeholder="Search" aria-label="Search" ref="cari">
-      </form>
+    <div class="tombol">
+    <a class="page" @click="pages(-1)" href="#" v-if="page > 1">Prev&emsp;</a>
+    <a class="page"  @click="pages(1)" href="#">Next</a>
     </div>
-    <div id="headerfilm" class="container marginBaru">
-    <RouterLink to="/add" class="tambahFilm"  >
-    
-    <div data-toggle="tooltip" data-placement="top" title="Tambah data film">
-    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
-      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-    </svg>
-      
-    </div>
-    </RouterLink> 
+    <h4>Page : {{page}} </h4>
+    <form @submit.prevent="serch()" id="mencari2" >
+        <input ref="dapatyangdicari" id="inputcari2"  class="form-control me-2" type="search" @keyup="serch()" @keydown="serch()" @change="serch()" placeholder="Search" aria-label="Search">
+    </form>
     
     </div>
     <div class="container">
-      <div v-for="(fil, ind) in dataFilm().dapatDataFilm()" :key="ind" class="cardFilm">
-          <img @click="mengaktifkanmodal(fil)" :src="fil.Gambar" :alt="fil.Gambar" class="datafil" />
+      <div v-for="(fil, ind) in film" :key="ind" class="cardFilm">
+          <img @click="mengaktifkanmodal(fil)" :src="'https://image.tmdb.org/t/p/original'+fil.poster_path" :alt="fil.Gambar" class="datafil" />
       </div>
     </div>
     </div>
   </div>
   
-  <Modal @modaloffs="modaloff" class="modal" :class="modalname" />
+  <Modal2 @modaloffs="modaloff" class="modal" :class="modalname" />
   
  </div>
 </template>
@@ -83,17 +76,17 @@ export default {
      
       modalname : "hidess",
       film : {},
+      page : 1,
       film1: {
-        id : "",
+        id : 0,
         Judul: "",
-        Genre : "",
+        dewasa : "",
         Tanggal_liris: "",
-        pameran: [],
-        durasi: 0,
-        Sutradara: "",
+        Popularitas: 0,
+        Rating: 0,
+        Tipe: "",
         Anggaran: 0,
-        Penulis: [],
-        sinopsis: "",
+        Sinopsis: "",
         Gambar: "",
       },
       modal: false,
@@ -109,14 +102,28 @@ export default {
       dataFilm().dapatDataFilm()
     },
     trending() {
-        axios.get("https://api.themoviedb.org/3/trending/all/day?api_key=8ef11dd9fd287eb025af8de966f79db9&language=id&page=1")
-        .then(res => this.film = res.data)
-        console.log(this.film)
+        axios.get("https://api.themoviedb.org/3/trending/all/day?api_key=8ef11dd9fd287eb025af8de966f79db9&language=en-US&page="+this.page)
+        .then(res => this.film = res.data.results)
+        
+    },
+    pages(vals) {
+        this.page += vals
+         if(!this.$refs.dapatyangdicari.value||this.$refs.dapatyangdicari.value.length === 0) {
+                return this.trending()
+        }
+        let val = encodeURIComponent(this.$refs.dapatyangdicari.value)
+        axios.get("https://api.themoviedb.org/3/search/movie?api_key=8ef11dd9fd287eb025af8de966f79db9&language=en-US&query="+val+"&page="+this.page)
+        .then(res => this.film = res.data.results)
     },
    serch() {
       // search().changeSearch(this.cari)
-      search().changeSearch(this.$refs.cari.value)
-     
+      if(!this.$refs.dapatyangdicari.value||this.$refs.dapatyangdicari.value.length === 0) {
+                return this.trending()
+        }
+        let val = encodeURIComponent(this.$refs.dapatyangdicari.value)
+        axios.get("https://api.themoviedb.org/3/search/movie?api_key=8ef11dd9fd287eb025af8de966f79db9&language=id&query="+val+"&page="+this.page)
+        .then(res => this.film = res.data.results)
+        
     },
     cek() {
       console.log(this.film);
@@ -126,18 +133,21 @@ export default {
       this.modalname = "hidess"
     },
     mengaktifkanmodal(val) {
+      
+
+      let tanggal = new Date(val.release_date)
+
       this.modal = true;
       this.film1.id = val.id
-      this.film1.Judul = val.Judul;
-      this.film1.Genre = val.Genre;
-      this.film1.Tanggal_liris = val.Tanggal_liris;
-      this.film1.pameran = val.pameran;
-      this.film1.durasi = val.Durasi;
-      this.film1.Sutradara = val.Sutradara;
-      this.film1.Anggaran = val.Anggaran;
-      this.film1.Penulis = val.Penulis;
-      this.film1.Sinopsis = val.Sinopsis;
-      this.film1.Gambar = val.Gambar;
+      this.film1.Judul = val.title;
+      // this.film1.Genre = val.Genre;
+      this.film1.dewasa = val.adults ? "ya" : "tidak";
+      this.film1.Tanggal_liris = tanggal.getDate()+"-"+tanggal.getMonth()+"-"+tanggal.getFullYear();
+      this.film1.Popularitas = val.popularity;
+      this.film1.Rating = val.vote_average;
+      this.film1.Tipe = val.media_type;
+      this.film1.Sinopsis = val.overview;
+      this.film1.Gambar = val.poster_path;
       this.modalname = "show"
     },
   },
@@ -154,18 +164,24 @@ export default {
 <style>
 #headerfilm {
   display: flex;
+  
+}
 
+.page {
+    color: var(--textcolor);
+    text-decoration: none;
 }
 
 .marginBaru {
   width : 91%;
 }
-
-#mencari {
-  text-align: left;
-  
+#inputcari2 {
+    width: 100%;
 }
-
+#mencari2 {
+    width: 50%;
+}
+ 
 div.add2 > * {
   top: 50%;
   right: 0;
@@ -197,7 +213,7 @@ h4 {
 }
 .modal {
   z-index: 98;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.3);
   
 }
 
@@ -212,13 +228,9 @@ div.utama.modal.show>div.card {
   animation: fadein 1s  forwards;
 }
 @keyframes fadein {
-  0% {
-    opacity: 0;
+  from {
     transform: translate(-50%, 200%);}
-  90% {
-    opacity : 1;
-  }
-  100% {
+  to {
     transform: translate(-50%,-50%);}
 }
   @keyframes fadeout {
@@ -267,7 +279,7 @@ img.datafil {
 }
 
 @media only screen and (max-width:600px) {
-  #mencari {
+  #mencari2 {
       width: 70%;
       height: 7vh;
       margin-left: 30%;

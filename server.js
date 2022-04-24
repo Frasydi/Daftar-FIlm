@@ -9,7 +9,7 @@ app.use(serveStatic(path.join(__dirname, 'dist')));
 app.get("/add", (req,res) => {
     res.redirect("/")
 })
-app.get("/edit", (req,res) => {
+app.get("/edit/:id", (req,res) => {
     res.redirect("/")
 })
 app.get("/about", (req,res) => {
