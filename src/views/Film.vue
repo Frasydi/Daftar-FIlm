@@ -212,9 +212,13 @@ div.utama.modal.show>div.card {
   animation: fadein 1s  forwards;
 }
 @keyframes fadein {
-  from {
+  0% {
+    opacity: 0;
     transform: translate(-50%, 200%);}
-  to {
+  90% {
+    opacity : 1;
+  }
+  100% {
     transform: translate(-50%,-50%);}
 }
   @keyframes fadeout {
