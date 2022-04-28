@@ -30,8 +30,9 @@ import { RouterLink } from "vue-router";
     </div>
     </div>
   </div>
-  
+
   <Modal2 @modaloffs="modaloff" class="modal" :class="modalname" />
+
   
  </div>
 </template>

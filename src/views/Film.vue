@@ -38,7 +38,7 @@ import { RouterLink } from "vue-router";
     </div>
   </div>
   
-  <Modal @modaloffs="modaloff" class="modal" :class="modalname" />
+  <Modal v-if="modal" @modaloffs="modaloff" class="modal" :class="modalname" />
   
  </div>
 </template>
@@ -124,6 +124,7 @@ export default {
     modaloff() {
       
       this.modalname = "hidess"
+      this.modal = false;
     },
     mengaktifkanmodal(val) {
       this.modal = true;
@@ -139,6 +140,7 @@ export default {
       this.film1.Sinopsis = val.Sinopsis;
       this.film1.Gambar = val.Gambar;
       this.modalname = "show"
+      this.modal = true
     },
   },
   computed: {
