@@ -226,7 +226,8 @@ export default {
 
     created() {
          this.film = dataFilm().dapatDataFilmId(this.$route.params.id)[0]
-         
+         this.namaGambar = this.film.Gambar.nama
+         this.isiGambar = this.film.Gambar.isi
          
           
          
@@ -242,7 +243,6 @@ export default {
           let hasil = tanggal2[2] + "-"+tanggal2[1]+"-"+tanggal2[0]
           console.log(hasil)
           return hasil
-          return "2003-02-01"
       }
     }
     ,
@@ -254,15 +254,13 @@ export default {
             salah : false,
             alert_hide : false,
             gambar : "url",
-             namaGambar : "",
+            namaGambar : "",
             isiGambar : "",
          
             }
     },
     methods : {
-     async mengubahTanggal(tanggal) {
-         
-      },
+  
       uploadImage(e){
                 const image = e.target.files[0];
                
