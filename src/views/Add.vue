@@ -119,7 +119,37 @@ import { dataFilm } from "../store/dataFilm";
       />
       <label for="floatingPassword">Sinopsis</label>
     </div>
-    <div class="form-group mb-5">
+    <div class="form-check">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" v-model="gambar" value="url" checked>
+    <label class="form-check-label" for="flexRadioDefault1">
+      Url
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" v-model="gambar" value="file" >
+    <label class="form-check-label" for="flexRadioDefault2">
+      Import from file
+    </label>
+  </div>
+    
+    <div class="form-group mb-5" v-if="gambar == 'file'">
+      <div class="form-floating mb-3">
+        <label for="gambarFile" class="file form-control">{{!namaGambar ? "Masukkan Gambar" : namaGambar}}</label>
+        <input
+         
+          type="file"
+          accept="image/jpeg"
+          class="form-control"
+          name="gambarFile"
+          id="gambarFile"
+          placeholder="URL"
+          @change="uploadImage"
+          required
+        />
+        <label for="gambarFile">Gambar</label>
+      </div>
+    </div>
+    <div class="form-group mb-5" v-if="gambar == 'url'">
       <div class="form-floating mb-3">
         <input
          ref="Gambar"
@@ -130,7 +160,7 @@ import { dataFilm } from "../store/dataFilm";
          
           required
         />
-        <label for="floatingPassword">URL dari Gambar</label>
+        <label for="floatingPassword">Gambar</label>
       </div>
     </div>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
@@ -193,13 +223,27 @@ export default {
     return {
       salah: false,
       alert_hide: false,
-     
+      gambar : "url",
+      namaGambar : "",
+      isiGambar : ""
     };
   },
   methods: {
     isEmpty(str) {
     return (!str || str.length === 0)
 },
+    uploadImage(e){
+                const image = e.target.files[0];
+               
+                const reader = new FileReader();
+                reader.readAsDataURL(image);
+                reader.onload = e =>{
+                   this.namaGambar = image.name
+                    this.isiGambar = e.target.result;
+                    console.log(this.namaGambar)
+                    console.log(this.isiGambar);
+                };
+            },
     cek() {
       console.log(this.Genre)
     },
@@ -210,7 +254,10 @@ export default {
       let Anggaran = this.$refs.Anggaran.value
       let Sinopsis = this.$refs.Sinopsis.value
       let Penulis = this.$refs.Penulis.value
-      let Gambar = this.$refs.Gambar.value
+      let Gambar = {
+        nama : this.gambar == "url" ? this.isiGambar : this.namaGambar,
+        isi : this.gambar == "url" ? this.$refs.Gambar.value : this.isiGambar
+      }
       let Tanggal_liris = this.$refs.Tanggal_liris.value
       let Durasi = this.$refs.Durasi.value
       let Pameran = this.$refs.Pameran.value

@@ -24,7 +24,7 @@ import { RouterLink } from 'vue-router';
           <span>Penulis </span>&emsp;&emsp;&nbsp; : &nbsp;
           {{ datafilm.Penulis.join(", ") }} <br />
           <span>Sinopsis </span> :
-          <p class="sinopsis" v-html="datafilm.Sinopsis"></p>
+          <p  class="sinopsis" v-html="datafilm.Sinopsis"></p>
           <br />
 
           <div class="tomboluntukmodif">

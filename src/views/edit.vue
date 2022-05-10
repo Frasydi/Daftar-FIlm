@@ -36,7 +36,7 @@
         class="form-control"
         id="floatingPassword"
         placeholder="Tanggal Liris"
-        :value="film.Tanggal_liris"
+        :value="tanggals"
         required
       />
       <label for="floatingPassword">Tanggal Liris</label>
@@ -120,7 +120,37 @@
       />
       <label for="floatingPassword">Sinopsis</label>
     </div>
-    <div class="form-group mb-5">
+    <div class="form-check">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" v-model="gambar" value="url" checked>
+    <label class="form-check-label" for="flexRadioDefault1">
+      Url
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" v-model="gambar" value="file" >
+    <label class="form-check-label" for="flexRadioDefault2">
+      Import from file
+    </label>
+  </div>
+    
+    <div class="form-group mb-5" v-if="gambar == 'file'">
+      <div class="form-floating mb-3">
+        <label for="gambarFile" class="file form-control">{{film.Gambar.nama}}</label>
+        <input
+         
+          type="file"
+          accept="image/jpeg"
+          class="form-control"
+          name="gambarFile"
+          id="gambarFile"
+          placeholder="URL"
+          @change="uploadImage"
+          required
+        />
+        <label for="gambarFile">Gambar</label>
+      </div>
+    </div>
+    <div class="form-group mb-5" v-if="gambar == 'url'">
       <div class="form-floating mb-3">
         <input
          ref="Gambar"
@@ -128,10 +158,10 @@
           class="form-control"
           id="floatingPassword"
           placeholder="URL"
-          :value="film.Gambar"
+          :value="film.Gambar.isi"
           required
         />
-        <label for="floatingPassword">URL dari Gambar</label>
+        <label for="floatingPassword">Gambar</label>
       </div>
     </div>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
@@ -197,23 +227,54 @@ export default {
     created() {
          this.film = dataFilm().dapatDataFilmId(this.$route.params.id)[0]
          
-         let tanggals = this.film.Tanggal_liris.split("-")
-         this.film.Tanggal_liris = tanggals[2] + "-"+tanggals[1]+"-"+tanggals[0]
+         
+          
+         
+        
          
 
       
     },
+    computed : {
+      tanggals() {
+        console.log(this.film.Tanggal_liris)
+        let tanggal2 = this.film.Tanggal_liris.split("-")
+          let hasil = tanggal2[2] + "-"+tanggal2[1]+"-"+tanggal2[0]
+          console.log(hasil)
+          return hasil
+          return "2003-02-01"
+      }
+    }
+    ,
     watch : {
     },
     data() {
         return {
             film : {},
-            tanggal : {},
             salah : false,
-            alert_hide : false
-        }
+            alert_hide : false,
+            gambar : "url",
+             namaGambar : "",
+            isiGambar : "",
+         
+            }
     },
     methods : {
+     async mengubahTanggal(tanggal) {
+         
+      },
+      uploadImage(e){
+                const image = e.target.files[0];
+               
+                const reader = new FileReader();
+                reader.readAsDataURL(image);
+                reader.onload = e =>{
+                   this.namaGambar = image.name
+                    this.isiGambar = e.target.result;
+                    console.log(this.namaGambar)
+                    console.log(this.isiGambar);
+                };
+            },
         isEmpty(str) {
             return (!str||str.length == 0)
         },
@@ -224,7 +285,10 @@ export default {
       let Anggaran = this.$refs.Anggaran.value
       let Sinopsis = this.$refs.Sinopsis.value
       let Penulis = this.$refs.Penulis.value
-      let Gambar = this.$refs.Gambar.value
+       let Gambar = {
+        nama : this.gambar == "url" ? this.$refs.Gambar.value : this.namaGambar,
+        isi : this.gambar == "url" ? this.$refs.Gambar.value : this.isiGambar
+      }
       let Tanggal_liris = this.$refs.Tanggal_liris.value
       let Durasi = this.$refs.Durasi.value
       let Pameran = this.$refs.Pameran.value

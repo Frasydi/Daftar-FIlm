@@ -3,7 +3,9 @@ textarea.form-control {
     resize: none;
     height: 500px;
 }
-
+.file {
+  padding: 6px 12px;
+}
 label {
     color : var(--textcolor)
   }

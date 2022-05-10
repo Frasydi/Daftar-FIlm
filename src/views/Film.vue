@@ -32,7 +32,7 @@ import { RouterLink } from "vue-router";
     </div>
     <div class="container">
       <div v-for="(fil, ind) in dataFilm().dapatDataFilm()" :key="ind" class="cardFilm">
-          <img @click="mengaktifkanmodal(fil)" :src="fil.Gambar" :alt="fil.Gambar" class="datafil" />
+          <img @click="mengaktifkanmodal(fil)" :src="fil.Gambar.isi" :alt="fil.Gambar.nama" class="datafil" />
       </div>
     </div>
     </div>
