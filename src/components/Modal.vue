@@ -24,7 +24,9 @@ import { RouterLink } from 'vue-router';
           <span>Penulis </span>&emsp;&emsp;&nbsp; : &nbsp;
           {{ datafilm.Penulis.join(", ") }} <br />
           <span>Sinopsis </span> :
-          <p  class="sinopsis" v-html="datafilm.Sinopsis"></p>
+          <div  class="sinopsis">
+            <p v-for="par in datafilm.Sinopsis.split(/\n/)" :key="par" v-html="par"></p>
+          </div>
           <br />
 
           <div class="tomboluntukmodif">
@@ -44,6 +46,9 @@ import { RouterLink } from 'vue-router';
 import { dataFilm } from "../store/dataFilm";
 export default {
   inject: ["datafilm"],
+  created() {
+    console.log(this.datafilm.Sinopsis)
+  },
   methods: {
     mematikanmodal() {
       console.log("dapat");

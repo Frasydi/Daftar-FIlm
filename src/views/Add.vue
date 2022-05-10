@@ -114,7 +114,7 @@ import { dataFilm } from "../store/dataFilm";
         class="form-control"
         id="floatingPassword"
         placeholder="Sinopsis"
-        
+       
         required
       />
       <label for="floatingPassword">Sinopsis</label>
@@ -229,6 +229,7 @@ export default {
     };
   },
   methods: {
+   
     isEmpty(str) {
     return (!str || str.length === 0)
 },
