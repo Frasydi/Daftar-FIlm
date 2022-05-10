@@ -15,6 +15,8 @@ app.get("/edit/:id", (req,res) => {
 app.get("/about", (req,res) => {
     res.redirect("/")
 })
-
+app.get("/*", (req,res) => {
+    res.redirect("/")
+})
 const port = process.env.PORT || 80;
 app.listen(port);
