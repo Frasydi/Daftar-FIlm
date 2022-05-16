@@ -119,13 +119,13 @@ import { dataFilm } from "../store/dataFilm";
       <label for="floatingPassword">Sinopsis</label>
     </div>
     <div class="form-check">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" v-model="gambar" value="url" checked>
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" @change="urlgam" value="url" checked>
     <label class="form-check-label" for="flexRadioDefault1">
       Url
     </label>
   </div>
   <div class="form-check">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" v-model="gambar" value="file" >
+    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" @change="urlgam" value="file" >
     <label class="form-check-label" for="flexRadioDefault2">
       Import from file
     </label>
@@ -228,7 +228,9 @@ export default {
     };
   },
   methods: {
-   
+   urlgam(el) {
+        this.gambar = el.target.value
+      },
     isEmpty(str) {
     return (!str || str.length === 0)
 },
