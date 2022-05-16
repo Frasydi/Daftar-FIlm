@@ -6,8 +6,8 @@ import { RouterLink } from 'vue-router';
 
 <template>
   <div class="utama">
-    <button class="keluar" @click="mematikanmodal">X</button>
     <div class="card">
+     <button class="keluar" @click="mematikanmodal">X</button>
       <div class="container-fluit">
         <div class="container texts">
           <span>Judul</span>&emsp;&emsp;&emsp;&emsp;: &nbsp;{{ datafilm.Judul }}<br />
@@ -25,7 +25,10 @@ import { RouterLink } from 'vue-router';
           {{ datafilm.Penulis.join(", ") }} <br />
           <span>Sinopsis </span> :
           <div  class="sinopsis">
-            <p v-for="par in datafilm.Sinopsis.split(/\n/)" :key="par" v-html="par"></p>
+            <p v-for="par in datafilm.Sinopsis.split(/\n/)" :key="par">
+            {{par+'\n'}}
+            
+            </p>
           </div>
           <br />
 

@@ -56,13 +56,14 @@
 </template>
 
 <style>
+
 div.tolist {
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
 }
-    .myjumbo {
+    .carousel-item {
         margin-top: -5%;
         padding-top: 20%;
         height: 100%;

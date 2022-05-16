@@ -19,7 +19,9 @@ import { RouterLink } from 'vue-router';
           {{ datafilm.Rating }} <br />
           <span>Tipe </span>&emsp;&emsp;&emsp;&emsp;&nbsp; : &nbsp; {{ datafilm.Tipe }} <br />
           <span>Sinopsis </span>&emsp;&emsp;&nbsp;&nbsp;: 
-          <p class="sinopsis" v-html="datafilm.Sinopsis"></p>
+          <p class="sinopsis" v-for="sin in datafilm.Sinopsis.split(/\n/)" :key="sin"> 
+            {{sin+"\n"}}
+          </p>
           <br />
 
          

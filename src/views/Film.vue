@@ -13,7 +13,6 @@ import { RouterLink } from "vue-router";
     <h1>Data-data Film</h1>
     <div id="headerfilm">
     <h4>Genre : {{search().getGenre}}</h4>
-    
       <form @submit.prevent="serch()" id="mencari"  class="d-flex">
         <input  class="form-control me-2" type="search" @keyup="serch()" @keydown="serch()" @change="serch()" placeholder="Search" aria-label="Search" ref="cari">
       </form>
@@ -30,10 +29,17 @@ import { RouterLink } from "vue-router";
     </RouterLink> 
     
     </div>
-    <div class="container">
+    <div class="container gambarFilm" v-if="dataFilm().dapatDataFilm().length > 0">
       <div v-for="(fil, ind) in dataFilm().dapatDataFilm()" :key="ind" class="cardFilm">
-          <img @click="mengaktifkanmodal(fil)" :src="fil.Gambar.isi" :alt="fil.Gambar.nama" class="datafil" />
+          <img @click="mengaktifkanmodal(fil)"  :src="fil.Gambar.isi" :alt="fil.Gambar.nama" class="datafil" />
+          <div class="judulContent"> {{fil.Judul}} </div>
       </div>
+    </div>
+    <div class="container kosong mt-5" v-else-if="dataFilm().dapatDataFilm().length == 0 && (!search().getsearch || search().getsearch.length == 0)">
+      <div class="alert alert-danger">Data Kosong</div>
+    </div>
+    <div class="container kosong mt-5" v-else>
+      <div class="alert alert-warning">Tidak dapat menemukan film yang dimaksud</div>
     </div>
     </div>
   </div>
@@ -106,7 +112,6 @@ export default {
   methods: {
     mengantiGenre(genre) {
       search().changeGenre(genre)
-      dataFilm().dapatDataFilm()
     },
     trending() {
         axios.get("https://api.themoviedb.org/3/trending/all/day?api_key=8ef11dd9fd287eb025af8de966f79db9&language=id&page=1")
@@ -236,16 +241,54 @@ div.form-check.form-switch {
   --cardsize : 200px;
   --cardheight: 300px;
 }
-img.datafil {
-  cursor: pointer;
+.gambarFilm {
+  display: flex;
+  flex-wrap: wrap;
+}
+.cardFilm {
+  position: relative;
   --cardsize : 200px;
   --cardheight: 300px;
   width: var(--cardsize);
   height: var(--cardheight);
-  border-radius: 10% 10%;
+  margin-left: 5%;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 10% 10% 10% 10%;
   margin: 10px;
-  float: left;
+  
   box-shadow: 5px 10px 10px 5px var(--shadow);
+}
+img.datafil {
+  
+  top : 0;
+  left : 0;
+  right : 0;
+  bottom : 0;
+  width : 100%;
+  height : 100%;
+   border-radius: 10% 10% 10% 10%;
+}
+  img.datafil:hover ~ .judulContent {
+    animation: showJudul 1s forwards;
+  }
+.judulContent {
+  font-weight: bold;
+  text-align: center;
+  font-size: large;
+  position: absolute;
+  width : 100%;
+  top : 0;
+  transform: translateY(300%);
+  height : 40%;
+  background-color: aquamarine;
+  border-radius: 0 0 10% 10%;
+
+}
+@keyframes showJudul {
+  to {
+    transform: translateY(150%);
+  }
 }
 @keyframes hoverin {
       to {
@@ -257,37 +300,27 @@ img.datafil {
         transform: scale(100%, 100%)
       }
     }
-@media only screen and (min-width:600px) {
-    img.datafil {
-      animation : hoverout 0.4s forwards ease-out;
-      animation-direction: reverse;
-    }
-    img.datafil:hover {
+
+    
+    div.cardFilm:hover {
     animation: hoverin 0.4s forwards ease-out;
     }
     
-}
-
+   
+ 
 @media only screen and (max-width:600px) {
   #mencari {
       width: 70%;
       height: 7vh;
       margin-left: 30%;
   }
-  img.datafil {
+  div.cardFilm {
     --cardsize: 100% !important;
     --cardheight : 80vmax;
      width: var(--cardsize);
      height: var(--cardheight);
   }
-  img.datafil:hover {
-    animation : hoverselect 0.5s forwards
-  }
-   @keyframes hoverselect {
-      to {
-        opacity: 50%;
-      }
-  }
+  
   
 }
 

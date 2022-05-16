@@ -139,7 +139,7 @@
         <input
          
           type="file"
-          accept="image/jpeg"
+          accept="image"
           class="form-control"
           name="gambarFile"
           id="gambarFile"

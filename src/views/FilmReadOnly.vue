@@ -23,7 +23,7 @@ import { RouterLink } from "vue-router";
     </form>
     
     </div>
-    <div class="container">
+    <div class="container gambarFilm">
       <div v-for="(fil, ind) in film" :key="ind" class="cardFilm">
           <img @click="mengaktifkanmodal(fil)" :src="'https://image.tmdb.org/t/p/original'+fil.poster_path" :alt="fil.Gambar" class="datafil" />
       </div>
@@ -249,17 +249,7 @@ div.form-check.form-switch {
   --cardsize : 200px;
   --cardheight: 300px;
 }
-img.datafil {
-  cursor: pointer;
-  --cardsize : 200px;
-  --cardheight: 300px;
-  width: var(--cardsize);
-  height: var(--cardheight);
-  border-radius: 10% 10%;
-  margin: 10px;
-  float: left;
-  box-shadow: 5px 10px 10px 5px var(--shadow);
-}
+
 @keyframes hoverin {
       to {
         transform: scale(104%, 104%);
@@ -270,16 +260,7 @@ img.datafil {
         transform: scale(100%, 100%)
       }
     }
-@media only screen and (min-width:600px) {
-    img.datafil {
-      animation : hoverout 0.4s forwards ease-out;
-      animation-direction: reverse;
-    }
-    img.datafil:hover {
-    animation: hoverin 0.4s forwards ease-out;
-    }
-    
-}
+
 
 @media only screen and (max-width:600px) {
   #mencari2 {
@@ -287,20 +268,7 @@ img.datafil {
       height: 7vh;
       margin-left: 30%;
   }
-  img.datafil {
-    --cardsize: 100% !important;
-    --cardheight : 80vmax;
-     width: var(--cardsize);
-     height: var(--cardheight);
-  }
-  img.datafil:hover {
-    animation : hoverselect 0.5s forwards
-  }
-   @keyframes hoverselect {
-      to {
-        opacity: 50%;
-      }
-  }
+  
   
 }
 

@@ -12,8 +12,7 @@ import { dataFilm } from "../store/dataFilm";
 
   <form>
     <label class="tips"
-      >Untuk Pameran, Sutradara, dan Penulis, harap dipisahkan dengan tanda koma(,)</label
-    >
+      >Untuk Pameran, Sutradara, dan Penulis, harap dipisahkan dengan tanda koma(,)</label>
 
     <div class="form-floating mb-3">
       <input  ref="Judul"
@@ -138,7 +137,7 @@ import { dataFilm } from "../store/dataFilm";
         <input
          
           type="file"
-          accept="image/jpeg"
+          accept="image"
           class="form-control"
           name="gambarFile"
           id="gambarFile"
