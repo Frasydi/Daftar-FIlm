@@ -6,7 +6,7 @@ import { RouterLink } from "vue-router";
 </script>
 
 <template>
- <div>
+ <div class="terutama2">
 
   <div class="utama2">
     <div class="container">

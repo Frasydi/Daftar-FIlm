@@ -6,7 +6,7 @@ import { RouterLink } from "vue-router";
 </script>
 
 <template>
- <div>
+ <div class="terutama2">
 
   <div class="utama2">
     <div class="container">
@@ -214,6 +214,9 @@ h4 {
 .modal.show {
   display: block;
   
+}
+.terutama2 {
+  margin-top : 5%;
 }
 div.utama.modal.show>div.card {
   animation: fadein 1s  forwards;
