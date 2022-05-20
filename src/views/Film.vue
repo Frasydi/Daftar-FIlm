@@ -247,6 +247,9 @@ div.form-check.form-switch {
 .gambarFilm {
   display: flex;
   flex-wrap: wrap;
+  gap : 3rem;
+  flex : 1;
+  margin-top : 3rem;
 }
 .cardFilm {
   position: relative;
@@ -254,12 +257,10 @@ div.form-check.form-switch {
   --cardheight: 300px;
   width: var(--cardsize);
   height: var(--cardheight);
-  margin-left: 5%;
+ 
   overflow: hidden;
   cursor: pointer;
   border-radius: 10% 10% 10% 10%;
-  margin: 10px;
-  
   box-shadow: 5px 10px 10px 5px var(--shadow);
 }
 img.datafil {
@@ -273,24 +274,27 @@ img.datafil {
    border-radius: 10% 10% 10% 10%;
 }
   img.datafil:hover ~ .judulContent {
-    animation: showJudul 1s forwards;
+    
+    animation: showJudul 1s forwards ease;
   }
 .judulContent {
   font-weight: bold;
   text-align: center;
   font-size: large;
   position: absolute;
+  transform: rotateY(50deg);
   width : 100%;
-  top : 0;
-  transform: translateY(300%);
-  height : 40%;
+  bottom : 0;
+  transform: translateY(100%);
+  height : 20%;
   background-color: aquamarine;
   border-radius: 0 0 10% 10%;
-
 }
 @keyframes showJudul {
+ 
   to {
-    transform: translateY(150%);
+    display : block;
+    transform: translateY(0);
   }
 }
 @keyframes hoverin {

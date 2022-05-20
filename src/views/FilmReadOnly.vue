@@ -25,7 +25,8 @@ import { RouterLink } from "vue-router";
     </div>
     <div class="container gambarFilm">
       <div v-for="(fil, ind) in film" :key="ind" class="cardFilm">
-          <img @click="mengaktifkanmodal(fil)" :src="'https://image.tmdb.org/t/p/original'+fil.poster_path" :alt="fil.Gambar" class="datafil" />
+          <img @click="mengaktifkanmodal(fil)" :src="'https://image.tmdb.org/t/p/original'+fil.poster_path" :alt="fil.poster_path" class="datafil datafil2" />
+          <div class="judulContent"> {{fil.title}} </div>
       </div>
     </div>
     </div>
@@ -248,6 +249,11 @@ div.form-check.form-switch {
 :root {
   --cardsize : 200px;
   --cardheight: 300px;
+}
+
+img.datafil2 {
+  height : 640;
+  width : 640;
 }
 
 @keyframes hoverin {
