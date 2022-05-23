@@ -262,6 +262,7 @@ div.form-check.form-switch {
   cursor: pointer;
   border-radius: 10% 10% 10% 10%;
   box-shadow: 5px 10px 10px 5px var(--shadow);
+  transition: all 0.5s ease;
 }
 img.datafil {
   
@@ -272,12 +273,14 @@ img.datafil {
   width : 100%;
   height : 100%;
    border-radius: 10% 10% 10% 10%;
+   
 }
   img.datafil:hover ~ .judulContent {
+    transform: translateY(0);
     
-    animation: showJudul 1s forwards ease;
   }
 .judulContent {
+  transition: all 0.5s ease;
   font-weight: bold;
   text-align: center;
   font-size: large;
@@ -294,23 +297,14 @@ img.datafil {
  
   to {
     display : block;
-    transform: translateY(0);
+    
   }
 }
-@keyframes hoverin {
-      to {
-        transform: scale(104%, 104%);
-      }
-    }
-    @keyframes hoverout {
-      to {
-        transform: scale(100%, 100%)
-      }
-    }
+
 
     
     div.cardFilm:hover {
-    animation: hoverin 0.4s forwards ease-out;
+    transform: scale(104%, 104%);
     }
     
    

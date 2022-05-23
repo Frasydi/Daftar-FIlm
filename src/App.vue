@@ -39,7 +39,7 @@
         
         <li class="nav-item">
           <RouterLink to="/about" class="nav-link">
-          About me
+          About
           </RouterLink>
         </li>
         
